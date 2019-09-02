@@ -1,23 +1,49 @@
 import * as React from 'react';
 import { NextPageContext, NextPage } from 'next';
-import { useRouter } from 'next/router';
+import Error from 'next/error';
+import { observer } from 'mobx-react';
 import marked from 'marked';
 
-const postDetail: NextPage = ({  }: NextPageContext) => {
-  const router = useRouter();
-  const markednContents = require(`../../static/post/scale-up-for-security.md`);
+import PostLayout from '../../components/layout/PostLayout';
+import stores from '../../store';
 
-  React.useEffect(() => {
-    console.log(router);
-  }, []);
+interface IProps extends NextPageContext {
+  postId: string;
+  errorStatusCode: number;
+}
 
-  return (
-    <section
-      className="section-padding post markdown-body"
-      itemProp="articleBody"
-      dangerouslySetInnerHTML={{ __html: marked(markednContents) }}
-    />
+const { postsStore } = stores;
+
+const postDetail: NextPage = ({ postId, errorStatusCode }: IProps) => {
+  return errorStatusCode ? (
+    <Error statusCode={errorStatusCode} />
+  ) : (
+    <PostLayout postData={postsStore.getItem(postId)} nextPostData={postsStore.getNextItem(postId)}>
+      <section
+        className="section-padding post markdown-body"
+        itemProp="articleBody"
+        dangerouslySetInnerHTML={{ __html: marked(require(`../../static/post/${postId}.md`)) }}
+      />
+    </PostLayout>
   );
 };
 
-export default postDetail;
+postDetail.getInitialProps = async ({ res, query }: NextPageContext) => {
+  if (!query || !query.id) {
+    res.statusCode = 404;
+    res.end();
+    return;
+  }
+
+  let errorStatusCode = undefined;
+  if (!postsStore.getItem(query.id as string)) {
+    errorStatusCode = 404;
+  }
+
+  return {
+    postId: query.id || '',
+    errorStatusCode
+  };
+};
+
+export default observer(postDetail);

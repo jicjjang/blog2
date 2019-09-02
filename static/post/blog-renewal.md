@@ -1,7 +1,7 @@
-요 근래 [서울드링커 프로젝트 사건(?)](https://jicjjang.github.io/blog/post/life/) 
+요 근래 [서울드링커 프로젝트 사건(?)](https://jicjjang.github.io/post/life/) 
 이후로 개인프로젝트에 대해서 약간 손을 놓고있었습니다. ㅠㅠ
 
-![빵꾸난 잔디](https://jicjjang.github.io/blog/static/image/frontend/blog-renewal/commit.png)
+![빵꾸난 잔디](https://jicjjang.github.io/static/image/frontend/blog-renewal/commit.png)
 
 출퇴근을 제외한 잉여한 날들을 보내다 들어가본 Github에 빵꾸난 잔디로 슬퍼하다
 무언가 프로젝트를 진행해야겠다는 생각이 들더군요.
@@ -98,7 +98,7 @@ Reveal.initialize({
 
 ### 2-5. Resume
 
-[Resume 페이지](https://jicjjang.github.io/blog/resume)도 함께 옮겼습니다.
+[Resume 페이지](https://jicjjang.github.io/resume)도 함께 옮겼습니다.
 Layout을 따로 만들었는데, 바뀐건 거의 메타데이터 밖에 없네요.
 
 ### 2.6 Deployment

@@ -18,7 +18,7 @@ REST(Representaional State Transfer)는 웹 프로토콜(HTTP)을 활용하여, 
 - CRUD를 이용해 Action을 표현함.
 
 REST의 가장 큰 특징중의 하나가 모든 자원을 Resource로 표현한다는 것인데, 이 말은 Resource가 HTTP URL에 의해서 표현되는 것입니다. 예를 들어 제 블로그의
-articles 안의 web-presentation 게시글을 보려면 https://jicjjang.github.io/blog/post/web-presentation 로,
+articles 안의 web-presentation 게시글을 보려면 https://jicjjang.github.io/post/web-presentation 로,
 URI 뒤에 articles/web-presentation으로 들어가야 합니다. 이는 REST가 ROA를 따르는 웹 서비스이기 때문입니다.
 
 CRUD란 create, read, update, delete의 모음으로 HTTP Method 인 GET, POST, PUT, DELETE로 이를 제어합니다.
@@ -35,7 +35,7 @@ REST는 기존 HTTP를 변환없이 그대로 쓸 수 있으므로 사용에 어
 REST는 쓰기 쉽고, 이해하기도 쉬우므로 네트워크 및 웹 서비스 사용자들이 많이 사용하고 있다는 장점이 있습니다. 하지만 표준이 아니라 관리가 어렵다는 점이 단점으로 계속 남아있습니다.  
 
 <figure style="text-align: center;">
-    <img src="https://jicjjang.github.io/blog/static/image/etc/RESTful/crud.jpg" alt="image">
+    <img src="https://jicjjang.github.io/static/image/etc/RESTful/crud.jpg" alt="image">
     <figcaption><a href="http://excitingstory.tistory.com/entry/REST-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0-1%EB%B6%80-%EC%97%B0%EB%8F%99%EC%9D%98-%EC%97%AD%EC%82%AC" title="desciprtion">&lt;출처 - 랄라룰루님&gt;</a></figcaption>
 </figure>
 

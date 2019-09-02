@@ -31,8 +31,8 @@
 넘길 수 없는 부분이 보안상 이슈가 될 수 있다 생각했으나, 유동적인 앱 활용에는 방해가 되었습니다.
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/etc/liff-app-dev/liff-app-dev1.png" alt="image" style="display:inline-block; width:45%; margin:0 2%;">
-  <img src="https://jicjjang.github.io/blog/static/image/etc/liff-app-dev/liff-app-dev2.jpeg" alt="image" style="display:inline-block; width:45%; margin:0 2%;">
+  <img src="https://jicjjang.github.io/static/image/etc/liff-app-dev/liff-app-dev1.png" alt="image" style="display:inline-block; width:45%; margin:0 2%;">
+  <img src="https://jicjjang.github.io/static/image/etc/liff-app-dev/liff-app-dev2.jpeg" alt="image" style="display:inline-block; width:45%; margin:0 2%;">
 </figure>
 
 #### *- 이미지에서는 버튼이 아닌 링크로만 구현이 되어있습니다.*
@@ -45,7 +45,7 @@
 미리 등록해놓은 슬랙의 client 키값과 channel id를 통해 슬랙으로 이미지를 게시하게 됩니다.
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/etc/liff-app-dev/liff-app-dev3.jpeg" alt="image" style="width:50%; margin:0 auto;">
+  <img src="https://jicjjang.github.io/static/image/etc/liff-app-dev/liff-app-dev3.jpeg" alt="image" style="width:50%; margin:0 auto;">
 </figure>
 
 ---
@@ -58,7 +58,7 @@ queryString, pathParam 때문에 채널마다 다른 channel id가 등록된 웹
 Liff가 나온지 얼마되지 않았다는 것을 고려하면 발전 가능성은 충분하다 여겨집니다.
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/etc/liff-app-dev/liff-app-dev4.png" alt="image" style="width:50%; margin:0 auto;">
+  <img src="https://jicjjang.github.io/static/image/etc/liff-app-dev/liff-app-dev4.png" alt="image" style="width:50%; margin:0 auto;">
 </figure>
 
 ---

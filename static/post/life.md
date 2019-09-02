@@ -4,7 +4,7 @@
 
 ---
 
-지난주 월요일... 제출했던 [서울시 앱 공모전](https://jicjjang.github.io/blog/post/seoul-app-contest-with-node-and-react-native)
+지난주 월요일... 제출했던 [서울시 앱 공모전](https://jicjjang.github.io/post/seoul-app-contest-with-node-and-react-native)
 에 대한 결과를 메일로 받았습니다. 결과는 `예선 당선`. 본선엔 나가지 못하고 예선으로 끝났습니다.
 하지만 지속적으로 서버 로그와 디비 로그를 살펴보고 있던 저희팀에겐 궁금증이 많았죠. ^^
 
@@ -29,13 +29,13 @@
 담당자 분께 메일을 보냈습니다.
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/life/seouldrinker/mail1.png" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+  <img src="https://jicjjang.github.io/static/image/life/seouldrinker/mail1.png" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
 </figure>
 
 메일을 보시지 않아 다시 한 번 메일을 보냈습니다. ^^;
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/life/seouldrinker/mail2.png" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+  <img src="https://jicjjang.github.io/static/image/life/seouldrinker/mail2.png" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
 </figure>
 
 답장이 와서 읽는 도중 전화가 왔습니다. 담당자 분께서 해주시는 설명은

@@ -15,7 +15,7 @@ const Post = ({ post }: IProps) => {
 
   return (
     <article className="card" itemProp="blogPost" itemScope={true} itemType="http://schema.org/BlogPosting">
-      <Link href={post.path}>
+      <Link href={`/${post.layout}/[id]`} as={post.path}>
         <a className="card__link" itemProp="url">
           <div className="card__img">
             <figure className="absolute-bg wow" style={{ backgroundImage: `url(${post.image})` }} />

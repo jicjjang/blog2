@@ -43,7 +43,7 @@
 예전에 [Malware](https://jicjjang.github.io/2015/07/20/malware) 공격을 당했다는 글을 써놨는데 그 문제가 지금까지 이어져오고 있었습니다... (세팅 자체를 잘못한 것 같네요...)
 
 <figure>
-    <img src="https://jicjjang.github.io/blog/image/python/seoul-app-contest/error1.png" alt="image">
+    <img src="https://jicjjang.github.io/image/python/seoul-app-contest/error1.png" alt="image">
 </figure>
 
 서버에서 테스트하려고 열어놓은지 3~4일만에... 이... 일단 이 문제는 덮어놓고
@@ -59,8 +59,8 @@
 django는 csrf를 <code>{ % csrf_token % }</code> 이라는 태그로 지원을 해주고 있어서 template에서 사용만 하면 되는데, 자꾸 아래와 같은 에러가 빌생했습니다.
 
 <figure>
-    <img src="https://jicjjang.github.io/blog/static/image/python/seoul-app-contest/error2-1.png" alt="image">
-    <img src="https://jicjjang.github.io/blog/static/image/python/seoul-app-contest/error2-2.png" alt="image">
+    <img src="https://jicjjang.github.io/static/image/python/seoul-app-contest/error2-1.png" alt="image">
+    <img src="https://jicjjang.github.io/static/image/python/seoul-app-contest/error2-2.png" alt="image">
 </figure>
 
 이유를 찾던 도중, <code>@csrf_exempt</code> 라는 태그를 찾았습니다. csrf protection을 제외해 주는 위험한... 기능을 하지만, ajax 통신을 할 때

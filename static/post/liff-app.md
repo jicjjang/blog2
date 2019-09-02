@@ -12,12 +12,12 @@
 [가이드라인](https://developers.line.me/en/docs/liff/overview/)을 작성해 놨습니다.
 훌륭한 독해 실력과! 리뷰따위는 필요가 없으신 고수님들은! (따흐흑) 가이드 라인을 따라가셔도 ~~안~~됩니다.
 
-![liff1](https://jicjjang.github.io/blog/static/image/etc/liff/liff1.png)
+![liff1](https://jicjjang.github.io/static/image/etc/liff/liff1.png)
 
 오늘 만져볼 liff의 구현체는 위와 같은 모양으로 나올 겁니다. 여러 사이즈에 대한 App Scheme이
 미리 정의되어 있습니다.
 
-![liff2](https://jicjjang.github.io/blog/static/image/etc/liff/liff2.png)
+![liff2](https://jicjjang.github.io/static/image/etc/liff/liff2.png)
 
 계정을 만들고, 앱을 만들어서 배포하고, LIFF에 App을 등록하는 순서대로 진행하겠습니다.
 
@@ -53,7 +53,7 @@
 heroku에 배포하여 테스트 해볼 수 있는데요! 오늘 배포는 이 프로젝트로 진행할 예정입니다.
 (앱 개발에 대해서는 추후에)
 
-![liff3](https://jicjjang.github.io/blog/static/image/etc/liff/liff3.png)
+![liff3](https://jicjjang.github.io/static/image/etc/liff/liff3.png)
 
 위 링크를 타고 들어가 보라색 버튼의 heroku를 클릭하여 heroku에 배포할 수 있습니다.
 (계정은 직접 만들어주세요)
@@ -108,7 +108,7 @@ curl -X POST https://api.line.me/liff/v1/apps \
 `line://app/{ liffId }` 링크로 이동하면 됩니다. (Line App을 설치한 모바일에서만 가능)
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/etc/liff/liff4.jpeg" alt="image" style="width:50%; margin:0 auto;">
+  <img src="https://jicjjang.github.io/static/image/etc/liff/liff4.jpeg" alt="image" style="width:50%; margin:0 auto;">
 </figure>
 
 결과는 위 이미지처럼 나오게 됩니다. (기존 url로 들어갔을 때와는 다르게 정보들이 채워집니다.
@@ -124,7 +124,7 @@ liff에서 데이터를 가진 object를 내려줬기 때문이죠)
 제일 처음에 `Channel`을 만들 때, `Login API`를 선택한다면
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/etc/liff/liff5.jpeg" alt="image" style="width:50%; margin:0 auto;">
+  <img src="https://jicjjang.github.io/static/image/etc/liff/liff5.jpeg" alt="image" style="width:50%; margin:0 auto;">
 </figure>
 
 라는 화면 이 먼저 뜨게 됩니다.
@@ -132,7 +132,7 @@ liff에서 데이터를 가진 object를 내려줬기 때문이죠)
 ### 참고 2. sendMessage
 
 <figure style="text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/etc/liff/liff6.jpeg" alt="image" style="width:50%; margin:0 auto;">
+  <img src="https://jicjjang.github.io/static/image/etc/liff/liff6.jpeg" alt="image" style="width:50%; margin:0 auto;">
 </figure>
 
 [line-liff-starter issue](https://github.com/line/line-liff-starter/issues/1)

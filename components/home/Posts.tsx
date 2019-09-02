@@ -8,36 +8,43 @@ import { TAB_FLAG } from '../../pages';
 import { urlWithVariable, PAGE_URL } from '../../configs/url';
 
 interface IProps {
-  store: {
-    page: number;
-    categoryName: string;
-    filteredPostList: IPost[];
-    hasPrevious: boolean;
-    hasNext: boolean;
-    setPreviewIndex: (page: number) => void;
-  };
+  page: number;
+  categoryName: string;
+  hasPrevious: () => boolean;
+  hasNext: () => boolean;
   tabFlag: TAB_FLAG;
-  setloaded: (loaded: boolean) => void;
+  filteredPosts: IPost[];
+  setLoaded: (loaded: boolean) => void;
+  setPreviewIndex: (page: number) => void;
 }
 
-const Posts = ({ store, tabFlag, setloaded }: IProps) => {
+const Posts = ({
+  page,
+  categoryName,
+  hasPrevious,
+  hasNext,
+  tabFlag,
+  filteredPosts,
+  setLoaded,
+  setPreviewIndex
+}: IProps) => {
   return (
     <div className={`tab ${tabFlag === TAB_FLAG.POST ? 'active' : ''}`}>
       <ul itemScope={true} itemType="http://schema.org/Blog">
-        {(store.filteredPostList || []).map((post: IPost, index: number) => (
-          <Post key={post.id} index={index} post={post} setPreviewIndex={store.setPreviewIndex} />
+        {filteredPosts.map((post: IPost, index: number) => (
+          <Post key={post.id} index={index} post={post} setPreviewIndex={setPreviewIndex} />
         ))}
       </ul>
 
       <div className="pagination">
-        {store.hasPrevious && (
-          <Link href={urlWithVariable(PAGE_URL.HOME, null, { page: store.page - 1, categoryName: store.categoryName })}>
-            <a onClick={() => setloaded(false)}>Previous</a>
+        {hasPrevious() && (
+          <Link href={urlWithVariable(PAGE_URL.HOME, null, { page: page - 1, categoryName })}>
+            <a onClick={() => setLoaded(false)}>Previous</a>
           </Link>
         )}
-        {store.hasNext && (
-          <Link href={urlWithVariable(PAGE_URL.HOME, null, { page: store.page + 1, categoryName: store.categoryName })}>
-            <a onClick={() => setloaded(false)}>Next</a>
+        {hasNext() && (
+          <Link href={urlWithVariable(PAGE_URL.HOME, null, { page: page + 1, categoryName })}>
+            <a onClick={() => setLoaded(false)}>Next</a>
           </Link>
         )}
       </div>

@@ -61,14 +61,14 @@ Foo의 prototype은 Object를 가리킵니다. 하지만 Object의 프로토타�
 - 3. Foo의 prototype -> Object
   - 1. 순환구조 최상위인 Object에 도달하면 끝이나게 됩니다.
              
-![result](https://jicjjang.github.io/blog/static/image/javascript/prototypal-inheritance-model/result.png)
+![result](https://jicjjang.github.io/static/image/javascript/prototypal-inheritance-model/result.png)
 
 ## 예외 케이스
 
 만약 Bar의 프로토타입 생성자 (Bar.prototype.constructor)를 정해주지 않으면,
 상속받은 함수(new Foo())를 가리키게 됩니다.
 
-![exception](https://jicjjang.github.io/blog/static/image/javascript/prototypal-inheritance-model/exception.png)
+![exception](https://jicjjang.github.io/static/image/javascript/prototypal-inheritance-model/exception.png)
 
 ## 하지만
 
@@ -77,7 +77,7 @@ Foo의 prototype은 Object를 가리킵니다. 하지만 Object의 프로토타�
 를 하는것이죠. 물론 prototype.constructor도 이전과 마찬가지로 동일하게 정의해줘야 합니다.
 new Foo()를 해도 상관은 없지만, new 연산을 사용하면 아래와 같은 이슈(??)가 생깁니다.
 
-![issue](https://jicjjang.github.io/blog/static/image/javascript/prototypal-inheritance-model/issue.png)
+![issue](https://jicjjang.github.io/static/image/javascript/prototypal-inheritance-model/issue.png)
 
 `Bar.prototype = new Foo();`를 하면 필요없는 객체의 데이터까지 들어오게 됩니다.
 사실 무시할 수도 있지만, 본래의 역활과 다른 무언가까지 생기는게 찝찝하긴 합니다.

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { EMAIL } from '../../configs/url';
+import { EMAIL, baseUrl } from '../../configs/url';
 
 const Metas = () => {
   return (
@@ -8,6 +8,9 @@ const Metas = () => {
       <title>June's blog</title>
       <link rel="stylesheet" href="/static/css/main.css" />
       <link rel="stylesheet" href="/static/css/spinner.css" />
+      <link rel="icon" href="/static/favicon.png" />
+      <link rel="alternate" hrefLang="x-default" href={baseUrl} />
+      <link rel="alternate" hrefLang="ko-kr" href={baseUrl} />
 
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />

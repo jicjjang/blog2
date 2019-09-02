@@ -68,7 +68,7 @@ Docker도 이미 유명한 서비스죠. 하나의 커널로 여러 환경의 �
 
 위 발표자료의 구름 IDE에서는 추후 속도개선때문에 도커에 대한 구조를 변경했지만, 기본적인 Flow는 동일합니다.
 
-![도커](http://localhost:3000/blog/static/image/review/modern-startup/docker.jpg)
+![도커](https://jicjjang.github.io/static/image/review/modern-startup/docker.jpg)
 
 ### 3-4. 설정 자동화: 앤서블
 

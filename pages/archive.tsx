@@ -1,21 +1,15 @@
 import * as React from 'react';
-import Link from 'next/link';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
 import postContents, { IPost } from '../contents/posts';
-import { PAGE_URL } from '../configs/url';
 import Post from '../components/archive/Post';
+import BackToPosts from '../components/common/BackToPosts';
 
 const archive = () => {
   return (
     <DefaultLayout>
       <section className="archives" itemScope={true} itemType="http://schema.org/Blog">
-        <Link href={PAGE_URL.HOME}>
-          <a className="nav nav--black">
-            <i className="fa fa-lg fa-arrow-left"></i>
-            <span>Back to Posts</span>
-          </a>
-        </Link>
+        <BackToPosts color="black" />
         <header className="archives__header">
           <span>Archive</span>
         </header>

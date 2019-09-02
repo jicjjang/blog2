@@ -11,7 +11,8 @@ export const PAGE_URL = {
   POST: '/post',
   POST_DETAIL: '/post/:postId',
   CATEGORY: '/category',
-  CATEGORY_DETAIL: '/category/:categoryId'
+  CATEGORY_DETAIL: '/category/:categoryId',
+  SLIDE_DETAIL: '/slide/:slideId'
 };
 
 export const urlWithVariable = (

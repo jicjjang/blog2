@@ -15,9 +15,7 @@ const Category = ({ category, setTabFlag }: IProps) => {
   const categoryName = category.title.toLowerCase();
   return (
     <li className="card">
-      <Link
-        href={urlWithVariable(PAGE_URL.HOME, null, { categoryName })}
-        as={urlWithVariable(PAGE_URL.CATEGORY_DETAIL, { categoryId: categoryName })}>
+      <Link href={urlWithVariable(PAGE_URL.HOME, null, { categoryName })}>
         <a className="card__link" onClick={() => setTabFlag(TAB_FLAG.POST)}>
           <div className="card__img">
             <figure

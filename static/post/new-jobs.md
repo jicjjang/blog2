@@ -2,12 +2,12 @@
 
 ---
 
-17년 11월 [서울시 공모전](https://jicjjang.github.io/blog/post/seoul-app-contest-with-node-and-react-native/)
+17년 11월 [서울시 공모전](https://jicjjang.github.io/post/seoul-app-contest-with-node-and-react-native/)
 이 끝난 후, 고민이 많아졌다. 언제나 그렇듯 규모가 있는 개인 프로젝트가 끝난 후 오는 여운으로
 여겼다. 보통 일주일을 넘어가지 않았던 여운이 여느 때와는 다르게 가시지 않았다. 무엇 때문일까.
 
 <figure style="margin: 0 auto; text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/life/new-jobs/commit_log.png" alt="commit_log" style="width:100%;">
+  <img src="https://jicjjang.github.io/static/image/life/new-jobs/commit_log.png" alt="commit_log" style="width:100%;">
 </figure>
 
 ---
@@ -31,7 +31,7 @@ Nuxt로 블로그를 만들었던 (이제는 vuepress가 대체할 것만 같은
   
 현재의 회사가 발전하지 않는다는 것은 아니다. 다만, 지금 당장 무언가의 기술을 뚝딱 적용하기에는
 쌓아올려진 시간이 많은 회사이므로 방향을 바꾸기에는 얼마 쌓여올려지지 않은 프로젝트보다 신중함이
-필요한 것은 사실이니까. [서울시 공모전](https://jicjjang.github.io/blog/post/seoul-app-contest-with-node-and-react-native/)
+필요한 것은 사실이니까. [서울시 공모전](https://jicjjang.github.io/post/seoul-app-contest-with-node-and-react-native/)
 을 끝으로 개인적인 학습으로의 한계에 도달한 것 같다. 오픈 소스들을 들여다 보고, 다른 개발자들의
 프로젝트를 보고, 여러 세미나들을 참여해도 어떤 방향으로 나아가야 정답인 것인지 알기 힘들었다.
 일년 간의 세미나로도 회사 프로젝트에 넣어보고 싶었던 기술을 적용할 수 있겠다는 기회가
@@ -86,7 +86,7 @@ Nuxt로 블로그를 만들었던 (이제는 vuepress가 대체할 것만 같은
 
 뭔가 이 사이에 텀이 있었다. 처음엔 막연한 자신감 가득하게 이력서들을 냈지만, 기간이 지날수록
 지치기도 하였고, 구멍난 Github 잔디에 마음이 아파 blog 개편을 하였다.
-([https://jicjjang.github.io](https://jicjjang.github.io/blog) 에서
+([https://jicjjang.github.io](https://jicjjang.github.io) 에서
 [https://jicjjang.github.io/blog](https://jicjjang.github.io/blog) 로)
 1번 ~ 3번 까지 대략 2.5개월 정도가 걸린 것 같다. 
 
@@ -187,5 +187,5 @@ NHN벅스에서의 1년 11개월 (16년 7월 ~ 18년 5월) 여정이 끝나가�
 나와 벅스의, 그리고 이제 카카오 페이의 밝은 앞날을 기대해 본다.
 
 <figure style="margin: 0 auto; text-align: center;">
-  <img src="https://jicjjang.github.io/blog/static/image/life/new-jobs/kakaopay.jpg" alt="kakaopay" style="width:100%;">
+  <img src="https://jicjjang.github.io/static/image/life/new-jobs/kakaopay.jpg" alt="kakaopay" style="width:100%;">
 </figure>

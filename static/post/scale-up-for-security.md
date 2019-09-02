@@ -55,7 +55,7 @@ USB로 연결된 동글 내 버튼을 누르거나 NFC를 이용하여 탭핑하
 
 #### - 등록
 
-![FIDO Registration](https://jicjjang.github.io/blog/static/image/etc/scale-up-for-security/fido_registration.png)
+![FIDO Registration](https://jicjjang.github.io/static/image/etc/scale-up-for-security/fido_registration.png)
 * [https://fidoalliance.org/](https://fidoalliance.org/) 참고
 
 Application이 있는 `site.com`에서 FIDO인증을 사용하기 위해서는 **"1. 등록하기 버튼을 선택"**합니다.
@@ -64,7 +64,7 @@ Application이 있는 `site.com`에서 FIDO인증을 사용하기 위해서는 *
 
 #### - 로그인
 
-![FIDO Login](https://jicjjang.github.io/blog/static/image/etc/scale-up-for-security/fido_login.png)
+![FIDO Login](https://jicjjang.github.io/static/image/etc/scale-up-for-security/fido_login.png)
 * [https://fidoalliance.org/](https://fidoalliance.org/) 참고
 
 `site.com`에서 **"1. 로그인 선택"**을 한 뒤, **"2. 지문을 입력"**합니다. 디바이스에서는 Application과 입력된 인증 정보, 계정 정보를 토대로
@@ -76,7 +76,7 @@ Private Key/Public Key를 알 수 있으며, `site.com`에서는 지문을 통�
 
 #### - 등록
 
-![FIDO protocol registration](https://jicjjang.github.io/blog/static/image/etc/scale-up-for-security/fido_protocol_registration.png)
+![FIDO protocol registration](https://jicjjang.github.io/static/image/etc/scale-up-for-security/fido_protocol_registration.png)
 * [https://fidoalliance.org/](https://fidoalliance.org/) 참고
 
 1. client가 server에게 로그인/등록 요청을 함 (유저의 로그인 요청)
@@ -86,7 +86,7 @@ Private Key/Public Key를 알 수 있으며, `site.com`에서는 지문을 통�
 
 #### - 인증 / 트랜젝션
 
-![FIDO protocol authentication](https://jicjjang.github.io/blog/static/image/etc/scale-up-for-security/fido_protocol_authentication.png)
+![FIDO protocol authentication](https://jicjjang.github.io/static/image/etc/scale-up-for-security/fido_protocol_authentication.png)
 * [https://fidoalliance.org/](https://fidoalliance.org/) 참고
 
 인증은 등록과 거의 유사합니다. 그래서 특정 Application에서는 등록과 인증이 비슷하게 보여지기도 합니다. (UX의 훌륭함...?)
@@ -100,7 +100,7 @@ Private Key/Public Key를 알 수 있으며, `site.com`에서는 지문을 통�
 
 #### - 해지
 
-![FIDO protocol deregistration](https://jicjjang.github.io/blog/static/image/etc/scale-up-for-security/fido_protocol_deregistration.png)
+![FIDO protocol deregistration](https://jicjjang.github.io/static/image/etc/scale-up-for-security/fido_protocol_deregistration.png)
 * [https://fidoalliance.org/](https://fidoalliance.org/) 참고
 
 1. user의 해지 요청
@@ -115,7 +115,7 @@ Private Key/Public Key를 알 수 있으며, `site.com`에서는 지문을 통�
 
 ## Part 3. HMAC
 
-![HMAC](https://jicjjang.github.io/blog/static/image/etc/scale-up-for-security/hmac.jpg)
+![HMAC](https://jicjjang.github.io/static/image/etc/scale-up-for-security/hmac.jpg)
 
 [HMAC (Keyed-hash Message Authentication Code)](https://en.wikipedia.org/wiki/HMAC)은
 발신자와 수신자가 공유하는 Secret Key를 이용해 무결성이 보장되지 않는 채널을 통해 보내는 메세지가 훼손되었는지 여부를 확인할 수 있게 도와주는 알고리즘입니다.
