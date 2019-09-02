@@ -1,28 +1,42 @@
 import * as React from 'react';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import Metas from '../common/Metas';
-import Link from 'next/link';
-import { PAGE_URL } from '~/configs/url';
-
-const DOMAIN = 'https://jicjjang.github.io';
+import { PAGE_URL, baseUrl } from '../../configs/url';
 
 const PostLayout = (props: React.PropsWithChildren<{}>) => {
   return (
     <div>
       <Head>
         <Metas />
+        {hid: 'og:title', name: 'og:title', content: this.postData.title || 'June'},
+          {hid: 'og:url', name: 'og:url', content: `https://jicjjang.github.io/blog/${this.postData.path}`},
+          {hid: 'og:site_name', name: 'og:site_name', content: 'June'},
+          {hid: 'og:description', name: 'og:description', content: this.postData.description || 'June\'s blog'},
+          {hid: 'og:image', name: 'og:image', content: this.postData.image ?
+              `https://jicjjang.github.io/blog/${this.postData.image}` :
+              'https://jicjjang.github.io/blog/static/image/mine.jpg'},
+          {hid: 'twitter:domain', name: 'twitter:domain', content: `https://jicjjang.github.io/blog/${this.postData.path}`},
+          {hid: 'twitter:description', name: 'twitter:description', content: this.postData.description || 'June\'s blog'},
+          {hid: 'twitter:title', name: 'twitter:title', content: this.postData.title || 'June'},
+          {hid: 'twitter:url', name: 'twitter:url', content: `https://jicjjang.github.io/blog/${this.postData.path}`},
+          {hid: 'twitter:image', name: 'twitter:image', content: this.postData.image ?
+              `https://jicjjang.github.io/blog/${this.postData.image}` :
+              'https://jicjjang.github.io/blog/static/image/mine.jpg'},
+
+              
         <meta name="og:title" content="June" />
-        <meta name="og:url" content={DOMAIN} />
+        <meta name="og:url" content={baseUrl} />
         <meta name="og:site_name" content="June" />
         <meta name="og:description" content="June\'s blog" />
-        <meta name="og:image" content={`${DOMAIN}/static/image/mine.jpg`} />
+        <meta name="og:image" content='/static/image/mine.jpg' />
         <meta name="twitter:description" content="June\'s blog" />
         <meta name="twitter:title" content="June" />
-        <meta name="twitter:url" content={DOMAIN} />
-        <meta name="twitter:site" content={DOMAIN} />
-        <meta name="twitter:domain" content={DOMAIN} />
-        <meta name="twitter:image" content={`${DOMAIN}/static/image/mine.jpg`} />
+        <meta name="twitter:url" content={baseUrl} />
+        <meta name="twitter:site" content={baseUrl} />
+        <meta name="twitter:domain" content={baseUrl} />
+        <meta name="twitter:image" content='/static/image/mine.jpg' />
       </Head>
 
       <main>
