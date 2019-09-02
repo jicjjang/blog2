@@ -17,7 +17,7 @@ const postContents: IPost[] = [
   //   date: "2018-06-24",
   //   category: "Revlog",
   //   description: "180624 블로그 리뷰",
-  //   image: "static/image/revlog/revlog.jpg"
+  //   image: "/static/image/revlog/revlog.jpg"
   // },
   {
     id: 52,

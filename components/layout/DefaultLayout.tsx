@@ -2,8 +2,7 @@ import * as React from 'react';
 import Head from 'next/head';
 
 import Metas from '../common/Metas';
-
-const DOMAIN = 'https://jicjjang.github.io';
+import { baseUrl } from '../../configs/url';
 
 const DefaultLayout = (props: React.PropsWithChildren<{}>) => {
   return (
@@ -11,16 +10,16 @@ const DefaultLayout = (props: React.PropsWithChildren<{}>) => {
       <Head>
         <Metas />
         <meta name="og:title" content="June" />
-        <meta name="og:url" content={DOMAIN} />
+        <meta name="og:url" content={baseUrl} />
         <meta name="og:site_name" content="June" />
         <meta name="og:description" content="June\'s blog" />
-        <meta name="og:image" content={`${DOMAIN}/static/image/mine.jpg`} />
+        <meta name="og:image" content={`${baseUrl}/static/image/mine.jpg`} />
         <meta name="twitter:description" content="June\'s blog" />
         <meta name="twitter:title" content="June" />
-        <meta name="twitter:url" content={DOMAIN} />
-        <meta name="twitter:site" content={DOMAIN} />
-        <meta name="twitter:domain" content={DOMAIN} />
-        <meta name="twitter:image" content={`${DOMAIN}/static/image/mine.jpg`} />
+        <meta name="twitter:url" content={baseUrl} />
+        <meta name="twitter:site" content={baseUrl} />
+        <meta name="twitter:domain" content={baseUrl} />
+        <meta name="twitter:image" content={`${baseUrl}/static/image/mine.jpg`} />
       </Head>
 
       {props.children}

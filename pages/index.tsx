@@ -1,79 +1,129 @@
 import * as React from 'react';
-import { useEffect, useState, useCallback } from 'react';
-import { observer } from 'mobx-react';
+import { useState, useEffect } from 'react';
+import { observer, useLocalStore } from 'mobx-react';
+import { NextPage, NextPageContext } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import DefaultLayout from '../components/layout/DefaultLayout';
-import { useStore } from '../store';
-import { IPost } from '../contents/posts';
-import { ICategory } from '../contents/categories';
-import Sns from '../components/home/Sns';
-import Category from '../components/home/Category';
-import Post from '../components/home/Post';
+import Posts from '../components/home/Posts';
+import Categories from '../components/home/Categories';
+import postContents, { IPost } from '../contents/posts';
+import categoryContents from '../contents/categories';
+import Spinner from '../components/common/Spinner';
+import { PAGE_URL } from '../configs/url';
 
-const Home = observer(() => {
+interface IProps {
+  page?: number;
+  categoryName?: string;
+}
+
+export enum TAB_FLAG {
+  POST,
+  CATEGORY
+}
+
+const Home: NextPage = observer(({ page = 1, categoryName = '' }: IProps) => {
   const router = useRouter();
-  const HomeStore = useStore();
-  const [previewIndex, setPreviewIndex] = useState<number>(0);
-
-  const getPostPreviewImage = useCallback(
-    (post: IPost, index: number) => {
-      return {
-        backgroundImage: `url(${post.image})`,
-        display: index === (previewIndex || 0) ? 'block' : 'none'
-      };
-    },
-    [previewIndex]
-  );
+  const [tabFlag, setTabFlag] = useState<TAB_FLAG>(TAB_FLAG.POST);
+  const [loaded, setloaded] = useState<boolean>(true);
 
   useEffect(() => {
     if (router.query) {
-      if (router.query.page) {
+      if (router.query.categoryName) {
+        localStore.setCategoryName(router.query.categoryName as string);
+      } else if (router.query.page) {
         const numPage = parseInt(router.query.page as string, 10);
         if (typeof numPage === 'number' && numPage > 0) {
-          HomeStore.setPage(numPage);
+          localStore.setPage(numPage);
         }
-      } else if (router.query.categoryName) {
-        HomeStore.setCategoryName(router.query.categoryName as string);
       }
     }
+
+    setTimeout(() => {
+      setloaded(true);
+    }, 300);
+
+    return () => localStore.reset();
   }, [router]);
 
-  const toggleTab = (e: React.MouseEvent<HTMLLIElement>) => {
-    const siblingsPage = document.getElementsByClassName('tab');
-    const eventTarget = e.target as HTMLLIElement;
-    const siblingsTab = eventTarget.parentElement.children;
+  const localStore = useLocalStore(() => ({
+    page,
+    categoryName,
+    previewIndex: 0,
+    posts: postContents || [],
+    categories: categoryContents || [],
 
-    if (siblingsTab[0] === eventTarget) {
-      if (siblingsTab[0].className.indexOf('active') < 0) {
-        siblingsTab[0].className = siblingsTab[0].className + ' active';
-        siblingsPage[0].className = siblingsPage[0].className + ' active';
-        siblingsTab[1].className = siblingsTab[1].className.split(' ')[0];
-        siblingsPage[1].className = siblingsPage[1].className.split(' ')[0];
+    get hasNext(): boolean {
+      return localStore.posts && localStore.posts.length > localStore.page * 5 && !localStore.categoryName;
+    },
+
+    get hasPrevious(): boolean {
+      return localStore.page > 1 && !localStore.categoryName;
+    },
+
+    get isCategoryPage(): boolean {
+      return !!localStore.categoryName;
+    },
+
+    get filteredPostList(): IPost[] {
+      let filteredPostList = localStore.posts ? localStore.posts.slice() : []; // Deep copy
+
+      if (filteredPostList) {
+        if (localStore.categoryName) {
+          filteredPostList = filteredPostList.filter(
+            (post: IPost) => post.category.toLowerCase() === localStore.categoryName.toLowerCase()
+          );
+        }
+        filteredPostList = filteredPostList.filter((_, i: number) => {
+          return i >= (localStore.page - 1) * 5 && i < localStore.page * 5;
+        });
       }
-    } else {
-      if (siblingsTab[1].className.indexOf('active') < 0) {
-        siblingsTab[1].className = siblingsTab[0].className + ' active';
-        siblingsPage[1].className = siblingsPage[0].className + ' active';
-        siblingsTab[0].className = siblingsTab[0].className.split(' ')[0];
-        siblingsPage[0].className = siblingsPage[0].className.split(' ')[0];
-      }
+      return filteredPostList;
+    },
+
+    setPreviewIndex(previewIndex: number) {
+      localStore.previewIndex = previewIndex;
+    },
+
+    setPage(page: number) {
+      localStore.page = page;
+    },
+
+    setCategoryName(categoryName: string) {
+      localStore.categoryName = categoryName;
+    },
+
+    reset() {
+      (localStore.page = 1),
+        (localStore.previewIndex = 0),
+        (localStore.categoryName = ''),
+        (localStore.posts = postContents || []),
+        (localStore.categories = categoryContents || []);
     }
-  };
+  }));
 
-  return (
+  return loaded ? (
     <DefaultLayout>
       <section className="previews">
         <div>
-          {HomeStore.isCategoryPage && (
-            <a className="nav nav--white" href={HomeStore.baseUrl} itemProp="url">
-              <i className="fa fa-lg fa-arrow-left"></i>
-              <span>Back to Posts</span>
-            </a>
+          {localStore.isCategoryPage && (
+            <Link href={PAGE_URL.HOME}>
+              <a className="nav nav--white" itemProp="url" onClick={() => setTabFlag(TAB_FLAG.POST)}>
+                <i className="fa fa-lg fa-arrow-left"></i>
+                <span>Back to Posts</span>
+              </a>
+            </Link>
           )}
-          {(HomeStore.filteredPostList || []).map((post: IPost, index: number) => (
-            <figure className="absolute-bg preview__img" style={getPostPreviewImage(post, index)} key={post.id} />
+          {(localStore.filteredPostList || []).map((post: IPost, index: number) => (
+            <figure
+              className="absolute-bg preview__img"
+              style={{
+                backgroundImage: `url(${post.image})`,
+                display: localStore.previewIndex === index ? 'block' : 'none'
+              }}
+              key={post.id}
+            />
           ))}
           <div className="previews__container">
             <span>Welcome to</span>
@@ -83,57 +133,53 @@ const Home = observer(() => {
         <div>
           <header>
             <ul className="tabs">
-              <li className="tabs__item active" onClick={toggleTab}>
+              <li
+                className={`tabs__item ${tabFlag === TAB_FLAG.POST ? 'active' : ''}`}
+                onClick={() => setTabFlag(TAB_FLAG.POST)}>
                 Posts
               </li>
-              <li className="tabs__item" onClick={toggleTab}>
+              <li
+                className={`tabs__item ${tabFlag === TAB_FLAG.CATEGORY ? 'active' : ''}`}
+                onClick={() => setTabFlag(TAB_FLAG.CATEGORY)}>
                 Categories
               </li>
             </ul>
           </header>
 
-          <div className="tab active">
-            <ul itemScope={true} itemType="http://schema.org/Blog">
-              {(HomeStore.filteredPostList || []).map((post: IPost, index: number) => (
-                <Post key={post.id} index={index} post={post} setPreviewIndex={setPreviewIndex} />
-              ))}
-            </ul>
+          <Posts store={localStore} tabFlag={tabFlag} setloaded={setloaded} />
 
-            <div className="pagination">
-              {HomeStore.hasPrevious && (
-                <Link
-                  href={`/?page=${HomeStore.page - 1}${
-                    HomeStore.categoryName ? `&categoryName=${HomeStore.categoryName}` : ''
-                  }`}>
-                  <a>Previous</a>
-                </Link>
-              )}
-              {HomeStore.hasNext && (
-                <Link
-                  href={`/?page=${HomeStore.page + 1}${
-                    HomeStore.categoryName ? `&categoryName=${HomeStore.categoryName}` : ''
-                  }`}>
-                  <a>Next</a>
-                </Link>
-              )}
-            </div>
-
-            <Sns />
-          </div>
-
-          <div className="tab">
-            <ul className="cards">
-              {(HomeStore.categories || []).map((category: ICategory) => (
-                <Category key={category.title} category={category} />
-              ))}
-            </ul>
-
-            <Sns />
-          </div>
+          <Categories store={localStore} tabFlag={tabFlag} setTabFlag={setTabFlag} />
         </div>
       </section>
     </DefaultLayout>
+  ) : (
+    <Spinner
+      options={{
+        fullSize: true
+      }}
+    />
   );
 });
+
+Home.getInitialProps = async ({ query }: NextPageContext) => {
+  let page: number = 1;
+  let categoryName: string = '';
+
+  if (query) {
+    if (query.categoryName) {
+      categoryName = (query.categoryName as string) || '';
+    } else if (query.page) {
+      const numPage = parseInt(query.page as string, 10);
+      if (typeof numPage === 'number' && numPage > 0) {
+        page = numPage;
+      }
+    }
+  }
+
+  return {
+    page,
+    categoryName
+  };
+};
 
 export default Home;
