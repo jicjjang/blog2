@@ -7,6 +7,7 @@ export const LINKEDIN_URL = 'https://www.linkedin.com/in/jicjjang';
 export const baseUrl = 'https://jicjjang.github.io';
 export const PAGE_URL = {
   HOME: '/',
+  RESUME: '/resume',
   ARCHIVE: '/archive',
   POST: '/post',
   POST_DETAIL: '/post/:postId',
