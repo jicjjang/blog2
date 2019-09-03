@@ -14,13 +14,13 @@ const ResumeLayout = (props: React.PropsWithChildren<{}>) => {
         <meta name="og:url" content={DOMAIN} />
         <meta name="og:site_name" content="June" />
         <meta name="og:description" content="June\'s blog" />
-        <meta name="og:image" content={`${DOMAIN}/static/image/mine.jpg`} />
+        <meta name="og:image" content="/static/image/mine.jpg" />
         <meta name="twitter:description" content="June\'s blog" />
         <meta name="twitter:title" content="June" />
         <meta name="twitter:url" content={DOMAIN} />
         <meta name="twitter:site" content={DOMAIN} />
         <meta name="twitter:domain" content={DOMAIN} />
-        <meta name="twitter:image" content={`${DOMAIN}/static/image/mine.jpg`} />
+        <meta name="twitter:image" content="/static/image/mine.jpg" />
       </Head>
 
       {props.children}
