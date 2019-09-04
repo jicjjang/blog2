@@ -23,19 +23,10 @@ const ResumeLayout = (props: React.PropsWithChildren<{}>) => {
         <script
           type="text/javascript"
           src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/static/resume/script/main.js"></script>
 
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"
-        />
-        <link
-          rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
         <link rel="stylesheet" href="/static/resume/css/styles-2.css" />
       </Head>
