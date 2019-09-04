@@ -9,11 +9,10 @@ export const PAGE_URL = {
   HOME: '/',
   RESUME: '/resume',
   ARCHIVE: '/archive',
-  POST: '/post',
   POST_DETAIL: '/post/:postId',
-  CATEGORY: '/category',
-  CATEGORY_DETAIL: '/category/:categoryId',
-  SLIDE_DETAIL: '/slide/:slideId'
+  SLIDE_DETAIL: '/slide/:slideId',
+  SITEMAP: '/sitemap.xml',
+  ROBOTS: '/robots.txt'
 };
 
 export const urlWithVariable = (
