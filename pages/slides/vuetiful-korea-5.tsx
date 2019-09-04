@@ -20,7 +20,6 @@ const vuetifulKorea5: NextPage = () => {
             <p style={{ margin: '20px 0 0 0' }}>
               <a href="http://kr.vuetiful.com/">Vuetiful korea 5th</a> 세미나 리뷰
             </p>
-            <p style={{ fontSize: '20px' }}>* `s` 키를 누르시면 slide에 대한 설명을 보실 수 있습니다.</p>
           </div>
           <aside className="notes">
             안녕하세요. 핀테크 서비스개발 파트 Jed 입니다. 이전부터 개인적으로 계속 참여하고 있던 Vue.js 국내 커뮤니티인

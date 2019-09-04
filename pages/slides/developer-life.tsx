@@ -207,7 +207,7 @@ const developerLife: NextPage = () => {
                 <span className="fragment">창업 </span>
                 <span className="fragment"> 동아리</span>
               </h2>
-              <div className="fragment fade-out" style={{ position: 'absolute', width: '100%;' }}>
+              <div className="fragment fade-out" style={{ position: 'absolute', width: '100%' }}>
                 <img
                   style={{ display: 'block', width: ' 80%', margin: 'auto' }}
                   src="/static/slides/image/oss/jjal5.jpg"

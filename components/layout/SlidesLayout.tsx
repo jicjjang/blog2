@@ -11,6 +11,8 @@ interface IProps {
 }
 
 const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
+  const [loaded, setLoaded] = React.useState<boolean>(false);
+
   React.useEffect(() => {
     setTimeout(() => {
       Reveal.initialize({
@@ -27,6 +29,7 @@ const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
           }
         ]
       });
+      setLoaded(true);
     }, 200);
   }, []);
 
@@ -56,7 +59,7 @@ const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
         <script type="text/javascript" src="/static/slides/lib/js/head.min.js" />
       </Head>
 
-      <div className="reveal" style={{ position: 'absolute' }}>
+      <div className="reveal" style={{ position: 'absolute', display: loaded ? 'block' : 'none' }}>
         {children}
       </div>
     </>
@@ -64,18 +67,3 @@ const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
 };
 
 export default SlidesLayout;
-
-{
-  /* ,
-    created() {
-      slideName = this.$route.path.split('/slides/')[1] || '';
-
-      for (let i in this.postList) {
-        if (this.postList[i].path.split('slides/')[1] === slideName) {
-          slide = this.postList[i];
-          this.index = parseInt(i);
-          break;
-        }
-      }
-    }, */
-}
