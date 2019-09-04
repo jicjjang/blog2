@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 
 import SlidesLayout from '../../components/layout/SlidesLayout';
 import stores from '../../store';
+import { baseUrl } from '../../configs/url';
 
 const { postsStore } = stores;
 
@@ -16,7 +17,7 @@ const graphqlStartClient: NextPage = () => {
           <p>
             <small>
               Created by{' '}
-              <a href="https://jicjjang.github.io" target="_blank">
+              <a href={baseUrl} target="_blank">
                 Junseok, Choi
               </a>
             </small>

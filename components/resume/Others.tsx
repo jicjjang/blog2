@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { baseUrl } from '../../configs/url';
+
 const Others = () => {
   return (
     <section className="section">
@@ -8,7 +10,7 @@ const Others = () => {
       </h2>
       <div className="upper-row">
         <h4>
-          <a className="title" href="https://jicjjang.github.io/slides/developer-life" target="_blank">
+          <a className="title" href={`${baseUrl}/slides/developer-life`} target="_blank">
             발표자료
           </a>
         </h4>

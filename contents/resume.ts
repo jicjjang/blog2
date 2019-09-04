@@ -1,3 +1,5 @@
+import { baseUrl } from '../configs/url';
+
 export interface IResumeExperience {
   title: string;
   when: string;
@@ -85,37 +87,37 @@ export const projectContents: IResumeProject[] = [
     company: 'Seminar',
     contents: [
       {
-        link: 'https://jicjjang.github.io/slides/react-basic',
+        link: `${baseUrl}/slides/react-basic`,
         title: 'React',
         content: `벅스 입사 후 진행했던 첫 사내 세미나 입니다. 회사에서는 리액트를 사용하지 않기 때문에 개인적으로 진행한 프로젝트(Mclang)를 설명하는 형식으로 진행하였습니다.`
       },
       {
-        link: 'https://jicjjang.github.io/slides/vue-basic-presentation',
+        link: `${baseUrl}/slides/vue-basic-presentation`,
         title: 'Vue',
         content: `벅스에서의 두 번째 사내 세미나로, 목록에는 작성하지 않은 NHN 사내 메신저 bot을 관리하는 툴을 만들고, 그 내용을 설명하는 세미나였습니다.`
       },
       {
-        link: 'https://jicjjang.github.io/slides/developer-life',
+        link: `${baseUrl}/slides/developer-life`,
         title: 'OSS 개발자 포럼',
         content: `첫 외부 세미나였습니다. 정말 개발을 하고 싶다는 생각이 들었을 때 도움을 받게 된 커뮤니티로, 커뮤니티 장 님의 요청으로 고등학생 ~ 대학생 개발자 분들께 어떠한 방식으로 내가 개발을 해왔으며 나와 같은, 비슷한 길을 가고자 한다면 생각해 보아야 할 부분들을 알려주고, 나 자신 또한 다른 선택을 했다면 더 좋았을 지에 대해 돌이켜 볼 수 있게 된 발표였습니다.`
       },
       {
-        link: 'https://jicjjang.github.io/slides/how-to-use-rxjs',
+        link: `${baseUrl}/slides/how-to-use-rxjs`,
         title: 'RxJS',
         content: `회사에서 진행한 세 번째 세미나 입니다. 조금 부끄럽지만, RxJS에 대해선 사용 할 기회가 없었기 때문에 간단히 작성된 RxJS 사이트의 예제를 쉽게 설명하는 방식으로 발표를 진행했습니다. 스트리밍 서비스를 제공하는 회사로써 RxJS를 사용한다면 많은 도움이 될 것이라 생각하고 진행한 세미나지만, IE9부터 지원하는 RxJS를 당장 사용할 수 없었습니다.`
       },
       {
-        link: 'https://jicjjang.github.io/slides/vue-pwa-start',
+        link: `${baseUrl}/slides/vue-pwa-start`,
         title: 'Vuetiful Korea 3rd',
         content: `Vue 한국 커뮤니티인 Vuetiful Korea에서 두 번째 외부 세미나를 진행했습니다. 공모전에 나갔던 Seoul Drinker 프로젝트는 시간과 클라이언트 개발자 이슈로 급하게 React Native를 (처음으로)이용해 개발을 진행하였고, 이후 Vue로 웹앱으로 전환을 했습니다. 그 과정에서 Cordova/Phongap를 이용한 코드 포팅 후 클라이언트 코드를 건드리는 것에 자신이 없었기 때문에(IOS/Android 경험이 없었기에) PWA를 사용하였고, 이를 바탕으로 Vue에 PWA를 적용하는 세미나를 진행했습니다.`
       },
       {
-        link: 'https://jicjjang.github.io/slides/graphql-start-server',
+        link: `${baseUrl}/slides/graphql-start-server`,
         title: 'GraphQL',
         content: `RxJS와 같이 서비스에 이용하면 괜찮다는 생각이 뿜어져 나온 GraphQL을 이용해 네 번째 팀 세미나를 진행했습니다. Browser와 같은 제약이 없었기 때문에 내용에 대한 설명을 잘 하면 적용이 가능할 것 같다는 생각을 하였으나, 기존 서비스를 바꾸는 것에는 반대가 많았으므로 다시한 번 좌절된 발표였습니다.`
       },
       {
-        link: 'https://jicjjang.github.io/slides/vue-apollo-graphql',
+        link: `${baseUrl}/slides/vue-apollo-graphql`,
         title: 'Vuetiful Korea 4th',
         content: `GraphQL 팀 세미나를 진행하면서 Seoul Drinker에서 사용했던 API를 GraphQL로 포팅 후, 발표를 했었습니다. 그 때에는 백엔드 코드만 완성이 되어있었고, 추가적으로 Vue에 GraphQL 데이터를 불러오는 부분까지 만들어 발표를 진행했습니다.`
       }
@@ -127,7 +129,8 @@ export const projectContents: IResumeProject[] = [
       {
         link: 'http://github.com/seouldrinker',
         title: 'Seoul drinker',
-        content: `2017년 7월 중순부터 10월 31일까지 서울시 앱 공모전에 참여했습니다. 설레발이라는 서울의 산책로를 소개해주는 앱을 디자이너, 안드로이드 개발자와 함께 만들고자 했지만 안드로이드 개발자가 취직을 함과 동시에 서울시에서 제공해주는 API에 이슈가 있다는 것을 알았습니다. 결국 8월말 즈음 아이디어를 변경하게 되었고, 기획자 한분과 함께 세명이서 seoul drinker라는 서울시의 수제 브루어리 펍과 맥주를 소개해주는 앱을 만들었습니다. 기술 스펙으로는 react-native, redux를 이용해 안드로이드 버전을 만들었으며 구글과 페이스북 로그인을 지원하였고, 백엔드는 node와 express, mongoDB를 이용하였습니다. 이 프로젝트는 혼자 단기간 (총 개발 기간 3~4주)에 백엔드와 처음 해보는 클라이언트 (이전에 안드로이드 또는 ios를 경험해본 적이 없었습니다)를 경험했다는 점이 가장 크게 배운 부분입니다. react-native는 이전에 했던 Mclang 프로젝트와 데이터의 흐름 자체가 비슷했기 때문에 조금은 쉽게 다가갈 수 있었고, 다시한 번 react를 하면서 Mclang에 대한 반성까지 할 수 있었습니다. 가장 큰 이슈는 시간의 부족과 데이터 구축, 라이브러리 등이 있었습니다. 중간에 아이디어를 바꿈으로써 시간이 부족한 상황에, 정제된 데이터가 Mclang 프로젝트에서 구축되었지만, 서울시에 맞는 데이터로의 정제가 필요하였습니다. 또한, react-native의 라이브러리들이 아직은 미성숙한 모습을 보였기 때문에 중간중간 넣었던 라이브러리를 빼고 필요한 부분들을 직접 만들기도 했습니다. 12월 초 즈음하여 <a href="https://jicjjang.github.io/post/life" target="_blank"> 최종 결과 </a> 가 나왔습니다. 좋은 결과를 얻지는 못하였고 억울한 점(?)도 있지만, 최선을 다했으며 직접 앱까지 돌아가는 결과물을 만든 것은 처음이기에 뿌듯함이 많이 남았고 후회는 되지 않는 결과를 얻었습니다.`
+        content: `
+        2017년 7월 중순부터 10월 31일까지 서울시 앱 공모전에 참여했습니다. 설레발이라는 서울의 산책로를 소개해주는 앱을 디자이너, 안드로이드 개발자와 함께 만들고자 했지만 안드로이드 개발자가 취직을 함과 동시에 서울시에서 제공해주는 API에 이슈가 있다는 것을 알았습니다. 결국 8월말 즈음 아이디어를 변경하게 되었고, 기획자 한분과 함께 세명이서 seoul drinker라는 서울시의 수제 브루어리 펍과 맥주를 소개해주는 앱을 만들었습니다. 기술 스펙으로는 react-native, redux를 이용해 안드로이드 버전을 만들었으며 구글과 페이스북 로그인을 지원하였고, 백엔드는 node와 express, mongoDB를 이용하였습니다. 이 프로젝트는 혼자 단기간 (총 개발 기간 3~4주)에 백엔드와 처음 해보는 클라이언트 (이전에 안드로이드 또는 ios를 경험해본 적이 없었습니다)를 경험했다는 점이 가장 크게 배운 부분입니다. react-native는 이전에 했던 Mclang 프로젝트와 데이터의 흐름 자체가 비슷했기 때문에 조금은 쉽게 다가갈 수 있었고, 다시한 번 react를 하면서 Mclang에 대한 반성까지 할 수 있었습니다. 가장 큰 이슈는 시간의 부족과 데이터 구축, 라이브러리 등이 있었습니다. 중간에 아이디어를 바꿈으로써 시간이 부족한 상황에, 정제된 데이터가 Mclang 프로젝트에서 구축되었지만, 서울시에 맞는 데이터로의 정제가 필요하였습니다. 또한, react-native의 라이브러리들이 아직은 미성숙한 모습을 보였기 때문에 중간중간 넣었던 라이브러리를 빼고 필요한 부분들을 직접 만들기도 했습니다. 12월 초 즈음하여 <a href="${baseUrl}/post/life" target="_blank"> 최종 결과 </a> 가 나왔습니다. 좋은 결과를 얻지는 못하였고 억울한 점(?)도 있지만, 최선을 다했으며 직접 앱까지 돌아가는 결과물을 만든 것은 처음이기에 뿌듯함이 많이 남았고 후회는 되지 않는 결과를 얻었습니다.`
       },
       {
         link: 'https://www.instagram.com/mclang_saloon',

@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 
 import SlidesLayout from '../../components/layout/SlidesLayout';
 import stores from '../../store';
+import { baseUrl } from '../../configs/url';
 
 const { postsStore } = stores;
 
@@ -15,7 +16,7 @@ const vueBasicPresentation: NextPage = () => {
           <h3>Javascript View Framework</h3>
           <p>
             <small>
-              Created by <a href="https://jicjjang.github.io">Junseok, Choi</a>
+              Created by <a href={baseUrl}>Junseok, Choi</a>
             </small>
           </p>
         </section>
