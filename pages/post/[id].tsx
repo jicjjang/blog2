@@ -15,6 +15,13 @@ interface IProps extends NextPageContext {
 const { postsStore } = stores;
 
 const postDetail: NextPage = ({ postId, errorStatusCode }: IProps) => {
+  React.useEffect(() => {
+    // marked에서 안먹혀서 따로 설정
+    document.querySelectorAll('pre > code').forEach((block: Element) => {
+      hljs.highlightBlock(block);
+    });
+  }, []);
+
   return errorStatusCode ? (
     <Error statusCode={errorStatusCode} />
   ) : (

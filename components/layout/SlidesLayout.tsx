@@ -4,8 +4,6 @@ import Head from 'next/head';
 import { baseUrl } from '../../configs/url';
 import { IPost } from '../../contents/posts';
 
-declare var hljs: any;
-
 interface IProps {
   slide: IPost;
 }
@@ -17,18 +15,25 @@ const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
     setTimeout(() => {
       Reveal.initialize({
         dependencies: [
-          { src: '/static/slides/plugin/markdown/marked.js' },
-          { src: '/static/slides/plugin/markdown/markdown.js' },
-          { src: '/static/slides/plugin/notes/notes.js', async: true },
-          {
-            src: '/static/slides/plugin/highlight/highlight.js',
-            async: true,
-            callback: function() {
-              hljs.initHighlightingOnLoad();
-            }
-          }
-        ]
+          { src: '/static/slides/plugin/notes/notes.js', async: true }
+          // 안쓰기로 한 기능들 제거 (all for markdown)
+          // { src: '/static/slides/plugin/markdown/marked.js' },
+          // { src: '/static/slides/plugin/markdown/markdown.js' },
+          // {
+          //   src: '/static/slides/plugin/highlight/highlight.js',
+          //   async: true,
+          //   callback: function() {
+          //     hljs.initHighlightingOnLoad();
+          //   }
+          // }
+        ],
+        minScale: 0.66,
+        maxScale: 0.66
       });
+
+      // 처음에만 top이 이상하게 잡히는 에러가 있음 ㅠ. 보정.
+      (document.querySelector('.present') as HTMLTableSectionElement).style.top = '0';
+
       setLoaded(true);
     }, 200);
   }, []);

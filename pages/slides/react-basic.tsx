@@ -183,9 +183,11 @@ const reactBasic: NextPage = () => {
           </aside>
         </section>
         <section data-markdown>
-          <script type="text/template">
-            ## 환경 설정 ``` $ npm install -g create-react-app $ create-react-app my-app $ npm start ``` #### 끝.
-          </script>
+          <h2>환경 설정</h2>
+          <p style={{ width: '80%', margin: '0 auto' }}>
+            <img src="/static/slides/image/react-basic/code1.png" />
+          </p>
+          <h4>끝</h4>
         </section>
         <section>
           <h2>개발</h2>
@@ -196,64 +198,22 @@ const reactBasic: NextPage = () => {
         </section>
         <section>
           <section data-markdown style={{ fontSize: '28px' }}>
-            <script type="text/template">
-              ## Data를 사용하기 위한 필요 요소 ### 1. props ```
-              {`
-class hello extends Component {
-  // 3. 생성자에서 this.props를 사용하기 위해서는
-  // super에 props를 넣어주어야 합니다.
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    // 4. return 은 단일 태그로만 가능.
-    return (
-      // 5. 부모 컴포넌트에서 전달해 준 name을 넣어준다.
-      // => Hello junseok!
-      <p>Hello {this.props.name}!</p>
-    )
-  }
-}
-
-ReactDOM.render(
-  <hello name="junseok" />,	// 1. 컴포넌트를 호출하면서 name props를 넘겨준다.
-  document.getElementsById("root")	// 2. 호출한 컴포넌트를 해당 DOM에 넣어준다.
-);`}
-              ```
-            </script>
+            <h2 id="data-">Data를 사용하기 위한 필요 요소</h2>
+            <h3 id="2-state">1. props</h3>
+            <p style={{ width: '80%', margin: '0 auto' }} className="fragment">
+              <img src="/static/slides/image/react-basic/code2.png" />
+            </p>
             <aside className="notes">
               props는 부모 컴포넌트에서 자식 컴포넌트로 넣어준 데이터로, 상수처럼 변하지 않는 값 입니다. 위 예제처럼
               호출하면서 넣어준 데이터를 하위 컴포넌트에서 사용할 수 있습니다.
             </aside>
           </section>
           <section data-markdown style={{ fontSize: '28px' }}>
-            <script type="text/template">
-              ## Data를 사용하기 위한 필요 요소 ### 2. state ```
-              {`
-class hello extends Component {
-  constructor(props) {
-    super(props);
-    // 1. state를 초기화해준다.
-    this.state = {
-      count: 0
-    }
-  }
-  // 2. 이벤트가 들어오면 count가 1 증가하는 함수
-  increase() {
-    this.setState({count: this.state.count+1});
-  }
-  render() {
-    // 3. JSX에서 onclick같은 부분은 camel-case로 써야한다.
-    // ps. css도 마찬가지 (backgroundImage, backgroundColor...)
-    // 4. a에 click 이벤트를 연결해준다.
-    return (
-      <a onClick={this.increase.bind(this)}>Click me!</a>
-    )
-  }
-}`}
-              ```
-            </script>
+            <h2 id="data-">Data를 사용하기 위한 필요 요소</h2>
+            <h3 id="2-state">2. state</h3>
+            <p style={{ width: '80%', margin: '0 auto' }} className="fragment">
+              <img src="/static/slides/image/react-basic/code3.png" />
+            </p>
             <aside className="notes">
               state는 변수처럼 변할 수 있는 데이터를 들고있습니다. 여러 이벤트에 사용할 수 있습니다. 상위컴포넌트의
               state를 자식에게 준다면 어떻게 될까요? 자식에서는 props로 사용하게 됩니다. 하지만 부모 요소의
@@ -302,28 +262,10 @@ class hello extends Component {
             </aside>
           </section>
           <section data-markdown style={{ fontSize: '28px' }}>
-            <script type="text/template">
-              ## 이쯤에서 다시보는 Redux ```
-              {`
-...
-// action을 props로 넣어주는 예제
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  name: function(state, action) {
-    const {type, changeFunc} = action;
-
-    switch (type) {
-      case 'CHANGE_FUNCTION':
-        return changeFunc;
-      default:
-        return state;
-    }
-  }
-}, dispatch);
-
-// state와 action을 props로 넣어줍니다.
-export default connect(mapStateToProps, mapDispatchToProps)(MyApp);`}
-              ```
-            </script>
+            <h2>이쯤에서 다시보는 Redux</h2>
+            <p style={{ width: '80%', margin: '0 auto' }}>
+              <img src="/static/slides/image/react-basic/code4.png" />
+            </p>
             <aside className="notes">이런식으로 코드가 나오는데 자세한 것은 코드를 보면서 진행하겠습니다.</aside>
           </section>
         </section>
