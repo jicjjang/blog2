@@ -22,7 +22,9 @@ const Post = ({ post, index = 0, setPreviewIndex }: IProps) => {
       itemScope={true}
       itemType="http://schema.org/BlogPosting"
       onMouseEnter={() => setPreviewIndex(index)}>
-      <Link href={`/${post.layout}/[id]`} as={post.path}>
+      <Link
+        href={post.layout === 'post' ? '/post/[id]' : post.path}
+        as={post.layout === 'post' ? post.path : undefined}>
         <a className="preview__link" itemProp="url">
           <span className="preview__date" itemProp="datePublished">
             {postDate(post.date)}
