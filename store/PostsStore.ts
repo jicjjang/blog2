@@ -1,8 +1,17 @@
 import { types } from 'mobx-state-tree';
 
-import { IPost } from '../contents/posts';
+export interface IPost {
+  id: number;
+  layout: string;
+  path: string;
+  title: string;
+  date: string;
+  category: string;
+  description: string;
+  image: string;
+}
 
-const PostStore = types.model('PostStore', {
+const Post = types.model('Post', {
   id: types.number,
   layout: types.string,
   path: types.string,
@@ -15,11 +24,11 @@ const PostStore = types.model('PostStore', {
 
 const PostsStore = types
   .model('PostsStore', {
-    posts: types.optional(types.array(PostStore), [])
+    posts: types.optional(types.array(Post), [])
   })
   .actions(self => ({
     addPost(post: IPost) {
-      self.posts.push(PostStore.create(post));
+      self.posts.push(post);
     },
     getFilteredPosts({ page = 1, categoryName = undefined }: { page?: number; categoryName?: string }) {
       if (categoryName) {

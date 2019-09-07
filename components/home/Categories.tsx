@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Category from './Category';
-import { ICategory } from '../../contents/categories';
+import { ICategory } from '../../store/CategoriesStore';
 import Sns from './Sns';
 import { TAB_FLAG } from '../../pages';
 

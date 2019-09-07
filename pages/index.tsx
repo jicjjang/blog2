@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import DefaultLayout from '../components/layout/DefaultLayout';
 import Posts from '../components/home/Posts';
 import Categories from '../components/home/Categories';
-import { IPost } from '../contents/posts';
+import { IPost } from '../store/PostsStore';
 import Spinner from '../components/common/Spinner';
 import BackToPosts from '../components/common/BackToPosts';
 import stores from '../store';

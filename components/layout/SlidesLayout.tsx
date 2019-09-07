@@ -2,7 +2,7 @@ import * as React from 'react';
 import Head from 'next/head';
 
 import { baseUrl } from '../../configs/url';
-import { IPost } from '../../contents/posts';
+import { IPost } from '../../store/PostsStore';
 
 interface IProps {
   slide: IPost;

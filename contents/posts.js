@@ -1,15 +1,4 @@
-export interface IPost {
-  id: number;
-  layout: string;
-  path: string;
-  title: string;
-  date: string;
-  category: string;
-  description: string;
-  image: string;
-}
-
-const postContents: IPost[] = [
+module.exports = [
   // {
   //   layout: "revlog",
   //   path: "revlog/revlog-1",
@@ -540,5 +529,3 @@ const postContents: IPost[] = [
     image: '/static/image/etc/web-presentation/web-presentation.png'
   }
 ];
-
-export default postContents;

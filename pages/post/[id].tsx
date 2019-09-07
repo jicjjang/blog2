@@ -36,13 +36,13 @@ const postDetail: NextPage = ({ postId, errorStatusCode }: IProps) => {
 };
 
 postDetail.getInitialProps = async ({ res, query }: NextPageContext) => {
+  let errorStatusCode = undefined;
+
   if (!query || !query.id) {
     res.statusCode = 404;
-    res.end();
-    return;
+    errorStatusCode = 404;
   }
 
-  let errorStatusCode = undefined;
   if (!postsStore.getItem(query.id as string)) {
     errorStatusCode = 404;
   }

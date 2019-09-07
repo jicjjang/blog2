@@ -1,6 +1,9 @@
 import { types } from 'mobx-state-tree';
 
-import { ICategory } from '../contents/categories';
+export interface ICategory {
+  title: string;
+  image: string;
+}
 
 const CategoryStore = types.model('CategoryStore', {
   title: types.string,

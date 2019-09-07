@@ -1,9 +1,4 @@
-export interface ICategory {
-  title: string;
-  image: string;
-}
-
-const categoryContents: ICategory[] = [
+module.exports = [
   {
     title: 'Javascript',
     image: '/static/image/javascript/javascript.jpg'
@@ -45,5 +40,3 @@ const categoryContents: ICategory[] = [
     image: '/static/image/revlog/revlog.jpg'
   }
 ];
-
-export default categoryContents;

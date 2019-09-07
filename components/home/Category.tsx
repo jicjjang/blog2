@@ -3,7 +3,7 @@ import * as React from 'react';
 import Link from 'next/link';
 
 import { PAGE_URL, urlWithVariable } from '../../configs/url';
-import { ICategory } from '../../contents/categories';
+import { ICategory } from '../../store/CategoriesStore';
 import { TAB_FLAG } from '../../pages';
 
 interface IProps {

@@ -1,9 +1,9 @@
 import { types } from 'mobx-state-tree';
 
-import PostsStore from './PostsStore';
-import postContents, { IPost } from '../contents/posts';
-import CategoriesStore from './CategoriesStore';
-import categoriesContents, { ICategory } from '../contents/categories';
+import PostsStore, { IPost } from './PostsStore';
+import postContents from '../contents/posts';
+import CategoriesStore, { ICategory } from './CategoriesStore';
+import categoriesContents from '../contents/categories';
 
 // Init PostsStore
 const postsStore = PostsStore.create({

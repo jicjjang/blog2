@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { baseUrl } from '../../configs/url';
-import { IPost } from '../../contents/posts';
+import { IPost } from '../../store/PostsStore';
 import BackToPosts from '../../components/common/BackToPosts';
 import Profile from '../../components/post/Profile';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-import { IPost } from '../../contents/posts';
+import { IPost } from '../../store/PostsStore';
 
 interface IProps {
   post: IPost;
