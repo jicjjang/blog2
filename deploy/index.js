@@ -1,0 +1,2 @@
+require('./robotsGenerator');
+require('./sitemapGenerator');
