@@ -79,41 +79,12 @@ const vueApolloGraphql: NextPage = () => {
           <section>
             <h3>Depth 조절이 가능하다니 무슨 소리죠?</h3>
             <div className="fragment" style={{display: 'inline-block', width: '30%'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      module.exports = \`
-      type A {
-        _id: String!
-        Aprop1: String
-        Aprop2: String
-        Aprop3: [B]
-      }
-      type b {
-        _id: String!
-        Bprop1: String
-        Bprop2: [C]
-      }
-      ...
-      \``}
-              </code></pre>
+              <img style={{ display: 'inline-block', margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code1.png" />
             </div>
             <div className="fragment" style={{display: 'inline-block', width: '30%', verticalAlign: 'top'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-        module.exports = \`
-          type C {
-            _id: String!
-            Cprop1: String
-            Cprop2: [D]
-          }
-          type D {
-            _id: String!
-            Dprop1: String
-            Dprop2: [A]       // 두둥...!
-          }
-          ...
-      \``}
-              </code></pre>
+              <img style={{ display: 'inline-block', margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code2.png" />
             </div>
             <div className="fragment" style={{display: 'inline-block', width: '40%', marginTop: '60px', verticalAlign: 'top'}}>
               이런 Recursive한 관계...<br/>서비스를 하다보면 없을 순 없다 ㅠㅠ...
@@ -196,25 +167,10 @@ const vueApolloGraphql: NextPage = () => {
             </div>
             <br/>
             <div className="fragment" style={{display: 'inline-block', width: '60%'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      ...
-      // server.js
-      import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
-      import schema from './graphql'
-      app.use('/graphql', cors(), bodyParser.json(), graphqlExpress({ schema }))
-      app.use('/graphiql', cors(), graphiqlExpress({ endpointURL: '/graphql' }))
-      ...`}
-              </code></pre>
-              <pre style={{marginTop: '20px'}}><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // graphql/index.js
-      import { makeExecutableSchema } from 'graphql-tools'
-      import typeDefs from './typeDefs'     // 타입 정의
-      import resolvers from './resolvers'   // 정의된 타입 구현
-
-      export default makeExecutableSchema({ typeDefs, resolvers })`}
-              </code></pre>
+              <img style={{ display: 'inline-block', margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code3.png" />
+              <img style={{ display: 'inline-block', margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code4.png" />
             </div>
             <div style={{display: 'inline-block', width: '40%', verticalAlign: 'top'}}>
               <div className="fragment" >graphql과 graphiql의 차이</div>
@@ -236,47 +192,14 @@ const vueApolloGraphql: NextPage = () => {
             </div>
             <br/>
             <div className="fragment" style={{display: 'inline-block', width: '50%'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // graphql/typedef.js
-      module.exports = \`
-        scalar Date       // 다른 타입에 대해서는 Date와 같이 scalar로 정의
-
-        type News {       // DB에서 가져올 타입은 scalar없이 정의.
-          _id: String!    // graphql의 기본 데이터 형은 String과 Int 두개
-          context: String // !는 requied
-          image: String
-          is_ok: Int!
-          crt_dt: Date!
-          udt_dt: Date!
-        }
-        type Query {
-          newsList: [News]
-        }
-      \``}
-              </code></pre>
+              <img style={{ display: 'inline-block', margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code5.png" />
             </div>
             <div className="fragment" style={{display: 'inline-block', width: '50%', verticalAlign: 'top'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // graphql/resolver.js
-      import { getNewsList } from '../modules/news'
-
-      module.exports = {
-        Query: {
-          newsList: () => getNewsList()
-        }
-      }`}
-              </code></pre>
-              <pre style={{marginTop: '20px'}}><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // modules/news.js
-      // API에서 쓰던 모듈과 같음
-      // MongoDB 조회. 끝.
-      export function getNewsList () {
-        return News.find({is_ok: 1}).sort({crt_dt: -1})
-      }`}
-              </code></pre>
+              <img style={{ display: 'inline-block', margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code6.png" />
+              <img style={{ display: 'inline-block', margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code7.png" />
             </div>
             <aside className="notes">
               이 두 파일만 더 살펴보면 끝입니다. 매우 간단하죠?
@@ -312,50 +235,13 @@ const vueApolloGraphql: NextPage = () => {
           <section>
             <h3>Vue 객체에 apollo provider 주입</h3>
             <div className="fragment" style={{display: 'inline-block', width: '50%'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // apollo-provider.js
-      import Vue from 'vue'
-      import VueApollo from 'vue-apollo'
-      import {HttpLink} from "apollo-link-http/lib/index"
-      import {ROOT_URL} from "./config"
-      import {InMemoryCache} from "apollo-cache-inmemory/lib/index"
-
-      Vue.use(VueApollo)
-
-      // This can hold multiple apollo clients
-      const apolloProvider = new VueApollo({
-        defaultClient: new ApolloClient({
-          link: new HttpLink({uri: /graphql),
-          cache: new InMemoryCache(),
-          connectToDevTools: true
-        }),
-        defaultOptions: {
-          $loadingKey: 'loading'
-        }
-      })
-
-      export default apolloProvider`}
-              </code></pre>
+              <img style={{ margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code8.png" />
             </div>
-            <div style={{display: 'inline-block', width: '50%', margin: '0 auto', verticalAlign: 'top'}}>
+            <div className="fragment" style={{display: 'inline-block', width: '50%', margin: '0 auto', verticalAlign: 'top'}}>
               <div className="fragment">
-                <pre style={{margin: '0 auto'}}><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // main.js
-      ...
-      import apolloProvider from './apollo-provider'
-
-      \/* eslint-disable no-new *\/
-      new Vue({
-        el: '#app',
-        router,
-        provide: apolloProvider.provide(),  // Provider 주입
-        store,
-        template: '<App/>',
-        components: { App }
-      })`}
-                </code></pre>
+                <img style={{ margin: '0 10px' }}
+                  src="/static/slides/image/vue-apollo-graphql/code9.png" />
               </div>
               <div className="fragment" style={{marginTop: '20px'}}>
                 provider는 공급자.<br/>
@@ -371,61 +257,12 @@ const vueApolloGraphql: NextPage = () => {
           <section>
             <h3>호출부에 대한 설정 완료! 이제는 SPC!</h3>
             <div className="fragment" style={{display: 'inline-block', width: '50%'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // container/News.vue
-      ...
-      <template>
-      ...
-        <li v-for="(news, index) in newsList" :key="index">
-          ...
-        </li>
-      ...
-      </template>
-      <script>
-      import apollo from '../graphql/news'
-      ...
-      export default {
-        apollo,   // apollo news 모듈
-        data () {
-          return {
-            newsList: [],
-            ...
-          }
-        },
-        ...
-      }
-      </script>
-      ...`}
-              </code></pre>
+              <img style={{ margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code10.png" />
             </div>
             <div className="fragment" style={{display: 'inline-block', width: '50%', verticalAlign: 'top'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '15px'}}>
-      {`
-      // graphql/news.js
-      import gql from 'graphql-tag'
-
-      export default {
-        newsList: {
-          // 가져올 column만 명시.
-          query: gql\`query NewsList {
-            newsList {
-              _id
-              context
-              image
-            }
-          }\`,
-          result ({ data, loader, networkStatus }) {
-            console.log('We got some result!')
-          },
-          // Error handling
-          error (error) {
-            console.error('We\'ve got an error!', error)
-          },
-          loadingKey: 'loading'
-        }
-      }`}
-              </code></pre>
+              <img style={{ margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code11.png" />
             </div>
             <aside className="notes">
               this.$apollo.~~~ 하는 방식으로도 사용할 수 있지만, 위 코드와 같은 방식으로 해야
@@ -435,21 +272,8 @@ const vueApolloGraphql: NextPage = () => {
           <section>
             <h3>간단하게 설명했지만</h3>
             <div className="fragment" style={{display: 'inline-block', width: '50%'}}>
-              <pre><code data-trim data-noescape style={{fontSize: '20px'}}>
-      {`
-      export default {
-        module: {
-          rules: [
-            // ...
-            {
-              test: /\.(graphql|gql)$/,
-              exclude: /node_modules/,
-              loader: 'graphql-tag/loader'
-            }
-          ]
-        }
-      }`}
-              </code></pre>
+              <img style={{ margin: '0 10px' }}
+                src="/static/slides/image/vue-apollo-graphql/code12.png" />
             </div>
             <div style={{display: 'inline-block', width: '50%', verticalAlign: 'top'}}>
               <div className="fragment">

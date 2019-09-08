@@ -4,6 +4,10 @@ import Head from 'next/head';
 import { baseUrl } from '../../configs/url';
 import { IPost } from '../../store/PostsStore';
 
+declare var Reveal: RevealStatic & {
+  isReady: () => boolean;
+};
+
 interface IProps {
   slide: IPost;
 }
@@ -11,7 +15,19 @@ interface IProps {
 const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
   const [loaded, setLoaded] = React.useState<boolean>(false);
 
+  const setCorrectSlidesLayout = () => {
+    const repeatEvent = setInterval(() => {
+      if (Reveal && Reveal.isReady()) {
+        clearInterval(repeatEvent);
+        setLoaded(true);
+        Reveal.layout(); // display가 block이 된 다음 layout을 다시 해야함
+      }
+    }, 300);
+  };
+
   React.useEffect(() => {
+    setCorrectSlidesLayout();
+
     setTimeout(() => {
       Reveal.initialize({
         dependencies: [
@@ -30,11 +46,6 @@ const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
         minScale: 0.66,
         maxScale: 0.66
       });
-
-      // 처음에만 top이 이상하게 잡히는 에러가 있음 ㅠ. 보정.
-      (document.querySelector('.present') as HTMLTableSectionElement).style.top = '0';
-
-      setLoaded(true);
     }, 200);
   }, []);
 

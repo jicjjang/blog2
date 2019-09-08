@@ -106,12 +106,12 @@ const graphqlStartServer: NextPage = () => {
               <img
                 className="fragment"
                 style={{ display: 'inline-block', width: '15%', margin: '0 10px' }}
-                src="/static/slides/image/graphql-start/type1.jpg"
+                src="/static/slides/image/graphql-start-server/type1.jpg"
               />
               <img
                 className="fragment"
                 style={{ display: 'inline-block', width: '15%', margin: '0 10px', verticalAlign: 'top' }}
-                src="/static/slides/image/graphql-start/type2.jpg"
+                src="/static/slides/image/graphql-start-server/type2.jpg"
               />
               <span
                 className="fragment"
@@ -141,7 +141,7 @@ const graphqlStartServer: NextPage = () => {
               <img
                 className="fragment"
                 style={{ display: 'inline-block', width: '25%', margin: '0 10px' }}
-                src="/static/slides/image/graphql-start/query_mutation.jpg"
+                src="/static/slides/image/graphql-start-server/query_mutation.jpg"
               />
               <span
                 className="fragment"
@@ -163,33 +163,7 @@ const graphqlStartServer: NextPage = () => {
             <h3>Interface 정의</h3>
             <div>
               <div className="fragment" style={{ width: '48%', margin: '0 auto' }}>
-                <pre>
-                  <code data-trim data-noescape style={{ fontSize: '12px', lineHeight: '18px' }}>
-                    {`interface Character {
-  id: ID!
-  name: String!
-  friends: [Character]
-  appearsIn: [Episode]!
-}
-
-type Human implements Character {
-  id: ID!
-  name: String!
-  friends: [Character]
-  appearsIn: [Episode]!
-  starships: [Starship]
-  totalCredits: Int
-}
-
-type Droid implements Character {
-  id: ID!
-  name: String!
-  friends: [Character]
-  appearsIn: [Episode]!
-  primaryFunction: String
-}`}
-                  </code>
-                </pre>
+                <img src="/static/slides/image/graphql-start-server/code1.png" />
               </div>
               <div className="fragment">interface를 상속하여 타입 구현</div>
             </div>
@@ -206,10 +180,10 @@ type Droid implements Character {
           <section>
             <h3>Resolver</h3>
             <div className="fragment" style={{ display: 'inline-block', width: '55%', verticalAlign: 'top' }}>
-              <img src="/static/slides/image/graphql-start/resolvers1.png" />
+              <img src="/static/slides/image/graphql-start-server/resolvers1.png" />
             </div>
             <div className="fragment" style={{ display: 'inline-block', width: '40%', margin: '0 10px' }}>
-              <img src="/static/slides/image/graphql-start/resolvers2.png" />
+              <img src="/static/slides/image/graphql-start-server/resolvers2.png" />
             </div>
             <div className="fragment">정의한 Query와 Mutation에 대한 내용을 구현합니다.</div>
             <aside className="notes">
@@ -242,7 +216,7 @@ type Droid implements Character {
           <section>
             <h3>3. Stable GraphQL</h3>
             <div className="fragment" style={{ display: 'inline-block', width: '50%', verticalAlign: 'top' }}>
-              <img src="/static/slides/image/graphql-start/stable1.png" />
+              <img src="/static/slides/image/graphql-start-server/stable1.png" />
               <div style={{ fontSize: '20px' }}>
                 <a href="https://www.apollographql.com/docs/#client-section" target="_blank">
                   &lt; Apollo 클라이언트 &gt;
@@ -250,7 +224,7 @@ type Droid implements Character {
               </div>
             </div>
             <div className="fragment" style={{ display: 'inline-block', width: '40%' }}>
-              <img src="/static/slides/image/graphql-start/stable2.png" />
+              <img src="/static/slides/image/graphql-start-server/stable2.png" />
               <div style={{ fontSize: '20px' }}>
                 <a href="http://graphql.org/code/#server-libraries" target="_blank">
                   &lt; GraphQL 서버 &gt;
