@@ -21,6 +21,7 @@ export default class extends Document<IProps> {
     return (
       <Html>
         <Head>
+          <link rel="canonical" href="https://jicjjang.github.io" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Lora|Space+Mono:700" />
           <link
             rel="stylesheet"

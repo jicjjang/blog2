@@ -12,7 +12,7 @@ interface IProps {
   nextPostData?: IPost;
 }
 
-const PostLayout = ({ postData, nextPostData, children }: React.PropsWithChildren<IProps>) => {
+const PostsLayout = ({ postData, nextPostData, children }: React.PropsWithChildren<IProps>) => {
   React.useEffect(() => {
     var d = document,
       s = d.createElement('script');
@@ -29,6 +29,7 @@ const PostLayout = ({ postData, nextPostData, children }: React.PropsWithChildre
   return (
     <>
       <Head>
+        <title>{postData.title} - June blog</title>
         <meta name="og:title" content={postData.title || 'June'} />
         <meta name="og:url" content={`${baseUrl}${postData.path}`} />
         <meta name="og:site_name" content={postData.title || 'June'} />
@@ -80,4 +81,4 @@ const PostLayout = ({ postData, nextPostData, children }: React.PropsWithChildre
   );
 };
 
-export default PostLayout;
+export default PostsLayout;

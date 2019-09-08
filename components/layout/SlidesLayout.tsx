@@ -55,12 +55,13 @@ const SlidesLayout = ({ slide, children }: React.PropsWithChildren<IProps>) => {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
+        <title>{slide.title} - June blog</title>
         <meta name="og:title" content={slide.title || 'June'} />
         <meta name="og:url" content={`${baseUrl}${slide.path}`} />
         <meta name="og:site_name" content="June" />
-        <meta name="og:description" content={slide.title || "June's blog"} />
+        <meta name="og:description" content={slide.title || 'June blog'} />
         <meta name="og:image" content="/static/image/mine.jpg" />
-        <meta name="twitter:description" content={slide.title || "June's blog"} />
+        <meta name="twitter:description" content={slide.title || 'June blog'} />
         <meta name="twitter:title" content="June" />
         <meta name="twitter:url" content={`${baseUrl}${slide.path}`} />
         <meta name="twitter:site" content={`${baseUrl}${slide.path}`} />

@@ -5,7 +5,7 @@ import { EMAIL, baseUrl } from '../../configs/url';
 const Metas = () => {
   return (
     <>
-      <title>June's blog</title>
+      <title>June blog</title>
       <link rel="stylesheet" href="/static/css/main.css" />
       <link rel="stylesheet" href="/static/css/spinner.css" />
       <link rel="icon" href="/static/favicon.png" />

@@ -4,7 +4,7 @@ import Error from 'next/error';
 import { observer } from 'mobx-react';
 import marked from 'marked';
 
-import PostLayout from '../../components/layout/PostLayout';
+import PostsLayout from '../../components/layout/PostsLayout';
 import stores from '../../store';
 
 interface IProps extends NextPageContext {
@@ -25,13 +25,13 @@ const postDetail: NextPage = ({ postId, errorStatusCode }: IProps) => {
   return errorStatusCode ? (
     <Error statusCode={errorStatusCode} />
   ) : (
-    <PostLayout postData={postsStore.getItem(postId)} nextPostData={postsStore.getNextItem(postId)}>
+    <PostsLayout postData={postsStore.getItem(postId)} nextPostData={postsStore.getNextItem(postId)}>
       <section
         className="section-padding post markdown-body"
         itemProp="articleBody"
         dangerouslySetInnerHTML={{ __html: marked(require(`../../static/post/${postId}.md`)) }}
       />
-    </PostLayout>
+    </PostsLayout>
   );
 };
 

@@ -7,13 +7,14 @@ const ResumeLayout = (props: React.PropsWithChildren<{}>) => {
   return (
     <div>
       <Head>
-        <meta name="og:title" content="June's resume" />
+        <title>June resume</title>
+        <meta name="og:title" content="June resume" />
         <meta name="og:url" content={`${baseUrl}${PAGE_URL.RESUME}`} />
-        <meta name="og:site_name" content="June's resume" />
-        <meta name="og:description" content="June's resume" />
+        <meta name="og:site_name" content="June resume" />
+        <meta name="og:description" content="June resume" />
         <meta name="og:image" content="/static/image/mine.jpg" />
-        <meta name="twitter:description" content="June's resume" />
-        <meta name="twitter:title" content="June's resume" />
+        <meta name="twitter:description" content="June resume" />
+        <meta name="twitter:title" content="June resume" />
         <meta name="twitter:url" content={`${baseUrl}${PAGE_URL.RESUME}`} />
         <meta name="twitter:site" content={`${baseUrl}${PAGE_URL.RESUME}`} />
         <meta name="twitter:domain" content={`${baseUrl}${PAGE_URL.RESUME}`} />
