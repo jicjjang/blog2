@@ -7,7 +7,7 @@
     "build": "next build",
     "export": "next export",
     "seo": "node deploy/index.js",
-    "publish": "next build && next export && npm run seo && push-dir --dir=out --branch=gh-pages --cleanup"
+    "publish": "next build && next export && npm run seo && push-dir --dir=out --branch=master --cleanup"
   },
   "dependencies": {
     "install": "^0.13.0",
