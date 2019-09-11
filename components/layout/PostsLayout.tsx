@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 import { baseUrl } from '../../configs/url';
 import { IPost } from '../../store/PostsStore';
-import BackToPosts from '../../components/common/BackToPosts';
-import Profile from '../../components/post/Profile';
+import BackToPosts from '../common/BackToPosts';
+import Profile from '../post/Profile';
 
 interface IProps {
   postData: IPost;
