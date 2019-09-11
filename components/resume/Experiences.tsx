@@ -17,7 +17,7 @@ const Experience = ({ title, when, company, usecase, details }: IResumeExperienc
         <div className="company">{company}</div>
       </div>
       <div className="details">
-        <p>usecase: {usecase}</p>
+        <p>Exp: {usecase}</p>
         {details && <p dangerouslySetInnerHTML={{ __html: details }} />}
       </div>
     </div>

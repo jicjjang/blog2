@@ -14,11 +14,11 @@ export const experienceContents: IResumeExperience[] = [
     when: '2018.5 -',
     company: 'Kakaopay, Pangyo',
     usecase: 'React, mobx, mst, React Context, React Hook...',
-    details: ''
+    details: `벅스에 입사하면서 받은 오리엔테이션 후반부에 팀을 정하기 위해 면담을 하는 과정이 있었습니다. "프론트 엔드"팀의 여부와 할 수 있는지 여부를 물어봤으나 벅스에는 웹서비스 팀만이 존재하였고,서버 개발과 template 엔진을 붙여 사용할 수 밖에 없었습니다. 하지만 계속 원하던 것은 프론트 엔드 개발이었고 이를 적용하기 위해 팀 내에서 수차례 프론트 관련 세미나를 진행하고 토이프로젝트를 진행하였습니다. 하지만 번번히 새로운 기술에 대한 검증이 필요하다거나 미숙하다는 이유로 적용이 좌절되었습니다. 그로인한 이직으로 카카오페이에 입사할 수 있었습니다. 현재 원하는 프론트 개발을 마음껏 하고 있으며 기존에 많이 경험해보지 못했던 웹뷰 환경에서 많은 엣지케이스를 경험하며 (ㅠㅠ) 즐겁게 개발하고 있습니다. 투자, 펀드, 혜택 등의 프론트엔드를 담당하고 있습니다.`
   },
   {
     title: 'Web Developer',
-    when: '2016.07 - 2018.05',
+    when: '2016.07 - 2018.05 (1년 11개월)',
     company: 'NHN Bugs, Pangyo',
     usecase: 'Spring, Javascript, jQuery, React',
     details: `4학년 1학기 재학 중, 신입 공채 1기로 NHN Bugs에 입사했습니다. 벅스 모바일 웹 개편을 시작으로, 삼성 스마트 티비 웹앱과 여러 장기 프로모션들 (
@@ -26,7 +26,7 @@ export const experienceContents: IResumeExperience[] = [
   },
   {
     title: 'Web Developer',
-    when: '2014.06 - 2015.06',
+    when: '2014.06 - 2015.06 (1년 1개월)',
     company: 'Tastelab, Seoul',
     usecase: 'Php, Slim, html/css/js, jQuery, Requirejs',
     details: `대학 3학년 때, 전공을 가지고 처음 겪은 사회 생활이었습니다. 웹을 좋아했기 때문에, 기초적인 웹 지식을 가지고 한, 두번 해봤던 웹을 밑바탕으로 시작하여 프론트, 백엔드, 서버에 대한 개념을 배우고 REST, Async, HTTP 구조 등에 대해 학습하였습니다. 인턴 생활을 하며 5개 정도의 홈페이지를 만들고 2개 정도의 메인 웹앱 프로젝트에 참여했는데, 처음에는 아무것도 생각이 나지 않고 나의 길이 아닌가 고민을 많이 했었습니다. 하지만 스스로를 믿고 계속 열심히 하다보니 길이 보였고, 어떤 식으로 코드를 다루고 효율적으로 써야 하는지에 대해 조금은 깨우친 소중한 회사였습니다. (인턴 3개월 후 정직원 전환)`
@@ -44,8 +44,32 @@ export interface IResumeProject {
 }
 export const projectContents: IResumeProject[] = [
   {
-    company: 'KakaoPay',
-    contents: []
+    company: 'Kakaopay',
+    contents: [
+      {
+        link: 'https://www.kakaopay.com/paystory/services/investment',
+        title: '마케팅 포탈',
+        content: `메인으로 담당하고 있는 프로젝트로, 입사 후 부터 현재까지 담당을 하고 있는 프로젝트 입니다. 처음 개발부터 3번 이상의 개편이 진행되었으며 (UI + Refactoring)
+        처음에는 SSR로 제작, 현재는 CSR로 serving되고 있습니다. CSR에서의 static serving 서버 등등 프론트 환경 위에서의 서버에 대한 경험도 함께 쌓고 있습니다. (이전 SSR에서의 노드서버경험 또한 가지고 있습니다.) 현재까지도 많은 업데이트가 진행되고 있으며 회사에서 주목받는 프로젝트 입니다.`
+      },
+      {
+        link: 'https://www.kakaopay.com/paystory/services/investment',
+        title: '투자 서비스',
+        content: `메인으로 담당하고 있는 프로젝트로, 입사 후 부터 현재까지 담당을 하고 있는 프로젝트 입니다. 처음 개발부터 3번 이상의 개편이 진행되었으며 (UI + Refactoring)
+        처음에는 SSR로 제작, 현재는 CSR로 serving되고 있습니다. CSR에서의 static serving 서버 등등 프론트 환경 위에서의 서버에 대한 경험도 함께 쌓고 있습니다. (이전 SSR에서의 노드서버경험 또한 가지고 있습니다.) 현재까지도 많은 업데이트가 진행되고 있으며 회사에서 주목받는 프로젝트 입니다.`
+      },
+      {
+        link: 'https://www.kakaopay.com/paystory/services/bill',
+        title: '청구서',
+        content: `입사 당시 청구서 개편 담당 FE 개발자로 채용이 되었으나, 내부 사정으로 개편에 많은 참여를 하진 못했습니다.`
+      },
+      {
+        link: 'https://www.kakaopay.com/shoplist/#/',
+        title: '제휴사 안내 페이지',
+        content: `첫 프로젝트를 시작하기 전, 간단하게 만들었던 제휴사 안내 페이지 입니다. React & Redux를 사용한 프로젝트 입니다. 기존에 Vue를 위주로 사용하였으나, 팀 내 기술 스펙협의가
+        이루어지면서 React를 사용하게 되었습니다. 입사 이래로 일주일 즈음의 기간이 주어진 프로젝트였고, 빠른 협의 및 배포 사이클을 배울 수 있었습니다.`
+      }
+    ]
   },
   {
     company: 'NHN Bugs',
@@ -87,29 +111,9 @@ export const projectContents: IResumeProject[] = [
     company: 'Seminar',
     contents: [
       {
-        link: `${baseUrl}/slides/react-basic`,
-        title: 'React',
-        content: `벅스 입사 후 진행했던 첫 사내 세미나 입니다. 회사에서는 리액트를 사용하지 않기 때문에 개인적으로 진행한 프로젝트(Mclang)를 설명하는 형식으로 진행하였습니다.`
-      },
-      {
-        link: `${baseUrl}/slides/vue-basic-presentation`,
-        title: 'Vue',
-        content: `벅스에서의 두 번째 사내 세미나로, 목록에는 작성하지 않은 NHN 사내 메신저 bot을 관리하는 툴을 만들고, 그 내용을 설명하는 세미나였습니다.`
-      },
-      {
-        link: `${baseUrl}/slides/developer-life`,
-        title: 'OSS 개발자 포럼',
-        content: `첫 외부 세미나였습니다. 정말 개발을 하고 싶다는 생각이 들었을 때 도움을 받게 된 커뮤니티로, 커뮤니티 장 님의 요청으로 고등학생 ~ 대학생 개발자 분들께 어떠한 방식으로 내가 개발을 해왔으며 나와 같은, 비슷한 길을 가고자 한다면 생각해 보아야 할 부분들을 알려주고, 나 자신 또한 다른 선택을 했다면 더 좋았을 지에 대해 돌이켜 볼 수 있게 된 발표였습니다.`
-      },
-      {
-        link: `${baseUrl}/slides/how-to-use-rxjs`,
-        title: 'RxJS',
-        content: `회사에서 진행한 세 번째 세미나 입니다. 조금 부끄럽지만, RxJS에 대해선 사용 할 기회가 없었기 때문에 간단히 작성된 RxJS 사이트의 예제를 쉽게 설명하는 방식으로 발표를 진행했습니다. 스트리밍 서비스를 제공하는 회사로써 RxJS를 사용한다면 많은 도움이 될 것이라 생각하고 진행한 세미나지만, IE9부터 지원하는 RxJS를 당장 사용할 수 없었습니다.`
-      },
-      {
-        link: `${baseUrl}/slides/vue-pwa-start`,
-        title: 'Vuetiful Korea 3rd',
-        content: `Vue 한국 커뮤니티인 Vuetiful Korea에서 두 번째 외부 세미나를 진행했습니다. 공모전에 나갔던 Seoul Drinker 프로젝트는 시간과 클라이언트 개발자 이슈로 급하게 React Native를 (처음으로)이용해 개발을 진행하였고, 이후 Vue로 웹앱으로 전환을 했습니다. 그 과정에서 Cordova/Phongap를 이용한 코드 포팅 후 클라이언트 코드를 건드리는 것에 자신이 없었기 때문에(IOS/Android 경험이 없었기에) PWA를 사용하였고, 이를 바탕으로 Vue에 PWA를 적용하는 세미나를 진행했습니다.`
+        link: `${baseUrl}/slides/vue-apollo-graphql`,
+        title: 'Vuetiful Korea 4th',
+        content: `GraphQL 팀 세미나를 진행하면서 Seoul Drinker에서 사용했던 API를 GraphQL로 포팅 후, 발표를 했었습니다. 그 때에는 백엔드 코드만 완성이 되어있었고, 추가적으로 Vue에 GraphQL 데이터를 불러오는 부분까지 만들어 발표를 진행했습니다.`
       },
       {
         link: `${baseUrl}/slides/graphql-start-server`,
@@ -117,9 +121,29 @@ export const projectContents: IResumeProject[] = [
         content: `RxJS와 같이 서비스에 이용하면 괜찮다는 생각이 뿜어져 나온 GraphQL을 이용해 네 번째 팀 세미나를 진행했습니다. Browser와 같은 제약이 없었기 때문에 내용에 대한 설명을 잘 하면 적용이 가능할 것 같다는 생각을 하였으나, 기존 서비스를 바꾸는 것에는 반대가 많았으므로 다시한 번 좌절된 발표였습니다.`
       },
       {
-        link: `${baseUrl}/slides/vue-apollo-graphql`,
-        title: 'Vuetiful Korea 4th',
-        content: `GraphQL 팀 세미나를 진행하면서 Seoul Drinker에서 사용했던 API를 GraphQL로 포팅 후, 발표를 했었습니다. 그 때에는 백엔드 코드만 완성이 되어있었고, 추가적으로 Vue에 GraphQL 데이터를 불러오는 부분까지 만들어 발표를 진행했습니다.`
+        link: `${baseUrl}/slides/vue-pwa-start`,
+        title: 'Vuetiful Korea 3rd',
+        content: `Vue 한국 커뮤니티인 Vuetiful Korea에서 두 번째 외부 세미나를 진행했습니다. 공모전에 나갔던 Seoul Drinker 프로젝트는 시간과 클라이언트 개발자 이슈로 급하게 React Native를 (처음으로)이용해 개발을 진행하였고, 이후 Vue로 웹앱으로 전환을 했습니다. 그 과정에서 Cordova/Phongap를 이용한 코드 포팅 후 클라이언트 코드를 건드리는 것에 자신이 없었기 때문에(IOS/Android 경험이 없었기에) PWA를 사용하였고, 이를 바탕으로 Vue에 PWA를 적용하는 세미나를 진행했습니다.`
+      },
+      {
+        link: `${baseUrl}/slides/how-to-use-rxjs`,
+        title: 'RxJS',
+        content: `회사에서 진행한 세 번째 세미나 입니다. 조금 부끄럽지만, RxJS에 대해선 사용 할 기회가 없었기 때문에 간단히 작성된 RxJS 사이트의 예제를 쉽게 설명하는 방식으로 발표를 진행했습니다. 스트리밍 서비스를 제공하는 회사로써 RxJS를 사용한다면 많은 도움이 될 것이라 생각하고 진행한 세미나지만, IE9부터 지원하는 RxJS를 당장 사용할 수 없었습니다.`
+      },
+      {
+        link: `${baseUrl}/slides/developer-life`,
+        title: 'OSS 개발자 포럼',
+        content: `첫 외부 세미나였습니다. 정말 개발을 하고 싶다는 생각이 들었을 때 도움을 받게 된 커뮤니티로, 커뮤니티 장 님의 요청으로 고등학생 ~ 대학생 개발자 분들께 어떠한 방식으로 내가 개발을 해왔으며 나와 같은, 비슷한 길을 가고자 한다면 생각해 보아야 할 부분들을 알려주고, 나 자신 또한 다른 선택을 했다면 더 좋았을 지에 대해 돌이켜 볼 수 있게 된 발표였습니다.`
+      },
+      {
+        link: `${baseUrl}/slides/vue-basic-presentation`,
+        title: 'Vue',
+        content: `벅스에서의 두 번째 사내 세미나로, 목록에는 작성하지 않은 NHN 사내 메신저 bot을 관리하는 툴을 만들고, 그 내용을 설명하는 세미나였습니다.`
+      },
+      {
+        link: `${baseUrl}/slides/react-basic`,
+        title: 'React',
+        content: `벅스 입사 후 진행했던 첫 사내 세미나 입니다. 회사에서는 리액트를 사용하지 않기 때문에 개인적으로 진행한 프로젝트(Mclang)를 설명하는 형식으로 진행하였습니다.`
       }
     ]
   },
@@ -176,12 +200,12 @@ export interface IResumeSkill {
   level: number;
 }
 export const skillContents: IResumeSkill[] = [
-  { title: 'Python & Django', level: 40 },
-  { title: 'React & Redux', level: 80 },
-  { title: 'Vue & Vuex', level: 90 },
-  { title: 'Php & slim', level: 30 },
-  { title: 'Javascript & jQuery', level: 85 },
+  { title: 'React & Mobx & ...', level: 90 },
+  { title: 'Javascript & jQuery', level: 80 },
   { title: 'HTML5 & CSS', level: 75 },
-  { title: 'Photoshop', level: 20 },
-  { title: 'Spring', level: 60 }
+  { title: 'Vue & Vuex', level: 70 },
+  { title: 'Spring', level: 60 },
+  { title: 'Python & Django', level: 40 },
+  { title: 'Php & slim', level: 20 },
+  { title: 'Photoshop', level: 20 }
 ];
