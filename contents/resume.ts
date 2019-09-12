@@ -34,7 +34,7 @@ export const experienceContents: IResumeExperience[] = [
 ];
 
 export interface IResumeProjectContent {
-  link: string;
+  link?: string;
   title: string;
   content: string;
 }
@@ -47,10 +47,9 @@ export const projectContents: IResumeProject[] = [
     company: 'Kakaopay',
     contents: [
       {
-        link: 'https://www.kakaopay.com/paystory/services/investment',
-        title: '마케팅 포탈',
-        content: `메인으로 담당하고 있는 프로젝트로, 입사 후 부터 현재까지 담당을 하고 있는 프로젝트 입니다. 처음 개발부터 3번 이상의 개편이 진행되었으며 (UI + Refactoring)
-        처음에는 SSR로 제작, 현재는 CSR로 serving되고 있습니다. CSR에서의 static serving 서버 등등 프론트 환경 위에서의 서버에 대한 경험도 함께 쌓고 있습니다. (이전 SSR에서의 노드서버경험 또한 가지고 있습니다.) 현재까지도 많은 업데이트가 진행되고 있으며 회사에서 주목받는 프로젝트 입니다.`
+        title: '혜택 서비스',
+        content: `쿠폰과 이벤트 서비스를 통합한 서비스 입니다. 기존 서비스들과 다르게 타 팀과의 협업을 통해 만든 서비스 입니다. (모놀리틱 서비스에서 마이크로 서비스로의 전환)
+        개발적 성장 보다는 팀간의 커뮤니케이션 방식에 대한 많은 생각을 하게 해준 서비스 입니다.`
       },
       {
         link: 'https://www.kakaopay.com/paystory/services/investment',
