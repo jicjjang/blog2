@@ -13,6 +13,7 @@ import BackToPosts from '../components/common/BackToPosts';
 import stores from '../store';
 
 interface IProps {
+  env: string;
   paramPage?: number;
   paramCategoryName?: string;
 }
@@ -24,7 +25,7 @@ export enum TAB_FLAG {
 
 const { postsStore, categoriesStore } = stores;
 
-const Home: NextPage = ({ paramPage = 1, paramCategoryName = '' }: IProps) => {
+const Home: NextPage = ({ env, paramPage = 1, paramCategoryName = '' }: IProps) => {
   const router = useRouter();
   const [tabFlag, setTabFlag] = useState<TAB_FLAG>(TAB_FLAG.POST);
   const [page, setPage] = useState<number>(paramPage);
@@ -98,6 +99,7 @@ const Home: NextPage = ({ paramPage = 1, paramCategoryName = '' }: IProps) => {
           </header>
 
           <Posts
+            env={env}
             page={page}
             hasPrevious={hasPrevious}
             hasNext={hasNext}
@@ -137,6 +139,7 @@ Home.getInitialProps = async ({ query }: NextPageContext) => {
   }
 
   return {
+    env: process.env.NODE_ENV,
     paramPage: page,
     paramCategoryName: categoryName
   };

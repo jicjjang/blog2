@@ -5,9 +5,10 @@ import { IPost } from '../../store/PostsStore';
 
 interface IProps {
   post: IPost;
+  env: string;
 }
 
-const Post = ({ post }: IProps) => {
+const Post = ({ post, env }: IProps) => {
   const postDate = (date: string) => {
     const postDate = new Date(date);
     return `${postDate.getMonth() + 1} ${postDate.getDate()}, ${postDate.getFullYear()}`;
@@ -16,8 +17,8 @@ const Post = ({ post }: IProps) => {
   return (
     <article className="card" itemProp="blogPost" itemScope={true} itemType="http://schema.org/BlogPosting">
       <Link
-        href={post.layout === 'post' ? '/post/[id]' : post.path}
-        as={post.layout === 'post' ? post.path : undefined}>
+        href={env === 'development' && post.layout === 'post' ? `/post?id=${post.path.split('/post/')[1]}` : post.path}
+        as={post.path}>
         <a className="card__link" itemProp="url">
           <div className="card__img">
             <figure className="absolute-bg wow" style={{ backgroundImage: `url(${post.image})` }} />

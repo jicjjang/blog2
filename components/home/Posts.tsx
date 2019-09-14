@@ -8,6 +8,7 @@ import { TAB_FLAG } from '../../pages';
 import { urlWithVariable, PAGE_URL } from '../../configs/url';
 
 interface IProps {
+  env: string;
   page: number;
   categoryName: string;
   hasPrevious: () => boolean;
@@ -19,6 +20,7 @@ interface IProps {
 }
 
 const Posts = ({
+  env,
   page,
   categoryName,
   hasPrevious,
@@ -32,7 +34,7 @@ const Posts = ({
     <div className={`tab ${tabFlag === TAB_FLAG.POST ? 'active' : ''}`}>
       <ul itemScope={true} itemType="http://schema.org/Blog">
         {filteredPosts.map((post: IPost, index: number) => (
-          <Post key={post.id} index={index} post={post} setPreviewIndex={setPreviewIndex} />
+          <Post key={post.id} env={env} index={index} post={post} setPreviewIndex={setPreviewIndex} />
         ))}
       </ul>
 

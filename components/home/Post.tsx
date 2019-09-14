@@ -4,12 +4,13 @@ import Link from 'next/link';
 import { IPost } from '../../store/PostsStore';
 
 interface IProps {
+  env: string;
   post: IPost;
   index: number;
   setPreviewIndex: (page: number) => void;
 }
 
-const Post = ({ post, index = 0, setPreviewIndex }: IProps) => {
+const Post = ({ env, post, index = 0, setPreviewIndex }: IProps) => {
   const postDate = (date: string) => {
     const postDate = new Date(date);
     return `${postDate.getMonth() + 1} ${postDate.getDate()}, ${postDate.getFullYear()}`;
@@ -23,8 +24,8 @@ const Post = ({ post, index = 0, setPreviewIndex }: IProps) => {
       itemType="http://schema.org/BlogPosting"
       onMouseEnter={() => setPreviewIndex(index)}>
       <Link
-        href={post.layout === 'post' ? '/post/[id]' : post.path}
-        as={post.layout === 'post' ? post.path : undefined}>
+        href={env === 'development' && post.layout === 'post' ? `/post?id=${post.path.split('/post/')[1]}` : post.path}
+        as={post.path}>
         <a className="preview__link" itemProp="url">
           <span className="preview__date" itemProp="datePublished">
             {postDate(post.date)}
