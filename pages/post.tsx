@@ -4,8 +4,8 @@ import Error from 'next/error';
 import { observer } from 'mobx-react';
 import marked from 'marked';
 
-import PostsLayout from '../../components/layout/PostsLayout';
-import stores from '../../store';
+import PostsLayout from '../components/layout/PostsLayout';
+import stores from '../store';
 
 interface IProps extends NextPageContext {
   postId: string;
@@ -29,7 +29,7 @@ const postDetail: NextPage = ({ postId, errorStatusCode }: IProps) => {
       <section
         className="section-padding post markdown-body"
         itemProp="articleBody"
-        dangerouslySetInnerHTML={{ __html: marked(require(`../../static/post/${postId}.md`)) }}
+        dangerouslySetInnerHTML={{ __html: marked(require(`../static/post/${postId}.md`)) }}
       />
     </PostsLayout>
   );
