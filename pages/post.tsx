@@ -8,14 +8,13 @@ import PostsLayout from '../components/layout/PostsLayout';
 import stores from '../store';
 
 interface IProps extends NextPageContext {
-  env: string;
   postId: string;
   errorStatusCode: number;
 }
 
 const { postsStore } = stores;
 
-const postDetail: NextPage = ({ env, postId, errorStatusCode }: IProps) => {
+const postDetail: NextPage = ({ postId, errorStatusCode }: IProps) => {
   React.useEffect(() => {
     // marked에서 안먹혀서 따로 설정
     document.querySelectorAll('pre > code').forEach((block: Element) => {
@@ -26,7 +25,7 @@ const postDetail: NextPage = ({ env, postId, errorStatusCode }: IProps) => {
   return errorStatusCode ? (
     <Error statusCode={errorStatusCode} />
   ) : (
-    <PostsLayout env={env} postData={postsStore.getItem(postId)} nextPostData={postsStore.getNextItem(postId)}>
+    <PostsLayout postData={postsStore.getItem(postId)} nextPostData={postsStore.getNextItem(postId)}>
       <section
         className="section-padding post markdown-body"
         itemProp="articleBody"
@@ -49,7 +48,6 @@ postDetail.getInitialProps = async ({ res, query }: NextPageContext) => {
   }
 
   return {
-    env: process.env.NODE_ENV,
     postId: query.id || '',
     errorStatusCode
   };

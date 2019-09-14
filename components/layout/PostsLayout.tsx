@@ -8,12 +8,11 @@ import BackToPosts from '../common/BackToPosts';
 import Profile from '../post/Profile';
 
 interface IProps {
-  env: string;
   postData: IPost;
   nextPostData?: IPost;
 }
 
-const PostsLayout = ({ env, postData, nextPostData, children }: React.PropsWithChildren<IProps>) => {
+const PostsLayout = ({ postData, nextPostData, children }: React.PropsWithChildren<IProps>) => {
   React.useEffect(() => {
     var d = document,
       s = d.createElement('script');
@@ -67,9 +66,7 @@ const PostsLayout = ({ env, postData, nextPostData, children }: React.PropsWithC
           <section className="next">
             <Link
               href={
-                env === 'development' && nextPostData.layout === 'post'
-                  ? `/post?id=${nextPostData.path.split('/post/')[1]}`
-                  : nextPostData.path
+                nextPostData.layout === 'post' ? `/post?id=${nextPostData.path.split('/post/')[1]}` : nextPostData.path
               }
               as={nextPostData.path}>
               <a className="next__link" itemProp="url" style={{ backgroundImage: `url(${nextPostData.image})` }}>
