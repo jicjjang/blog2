@@ -17,15 +17,19 @@ const resume = () => {
 
     allLevelBar.forEach((levelBar: HTMLDivElement) => {
       levelBar.style.width = '0';
-
       const level = levelBar.getAttribute('data-level');
-      const levelBarAnimation = levelBar.animate([{ width: '0' }, { width: level }], 800);
 
-      const finishEvent = () => {
+      if (levelBar && levelBar.animate) {
+        const levelBarAnimation = levelBar.animate([{ width: '0' }, { width: level }], 800);
+
+        const finishEvent = () => {
+          levelBar.style.width = level;
+          levelBar.removeEventListener('finish', finishEvent);
+        };
+        levelBarAnimation.addEventListener('finish', finishEvent);
+      } else {
         levelBar.style.width = level;
-        levelBar.removeEventListener('finish', finishEvent);
-      };
-      levelBarAnimation.addEventListener('finish', finishEvent);
+      }
     });
   }, []);
 
