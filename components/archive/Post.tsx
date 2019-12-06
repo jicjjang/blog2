@@ -13,12 +13,14 @@ const Post = ({ post }: IProps) => {
     return `${postDate.getMonth() + 1} ${postDate.getDate()}, ${postDate.getFullYear()}`;
   };
 
+  const backgroundImage = `url(${post.image || `/static/image/so-simple-sample-image-${(post.id % 7) + 1}.jpg`})`;
+
   return (
     <article className="card" itemProp="blogPost" itemScope={true} itemType="http://schema.org/BlogPosting">
       <Link href={post.layout === 'post' ? `/post?id=${post.path.split('/post/')[1]}` : post.path} as={post.path}>
         <a className="card__link" itemProp="url">
           <div className="card__img">
-            <figure className="absolute-bg wow" style={{ backgroundImage: `url(${post.image})` }} />
+            <figure className="absolute-bg wow" style={{ backgroundImage }} />
           </div>
           <div className="card__container">
             <h2 className="card__header" itemProp="name">

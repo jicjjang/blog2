@@ -12,7 +12,7 @@ const CategoryStore = types.model('CategoryStore', {
 
 const CategoriesStore = types
   .model('CategoriesStore', {
-    categories: types.optional(types.array(CategoryStore), [])
+    categories: types.array(CategoryStore)
   })
   .actions(self => ({
     addCategory(category: ICategory) {

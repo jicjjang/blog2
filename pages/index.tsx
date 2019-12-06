@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { observer } from 'mobx-react';
 import { NextPage, NextPageContext } from 'next';
 import { useRouter } from 'next/router';
@@ -54,12 +54,12 @@ const Home: NextPage = ({ paramPage = 1, paramCategoryName = '' }: IProps) => {
     }, 300);
   }, [page, categoryName]);
 
-  const hasNext = React.useCallback(() => postsStore.posts && postsStore.posts.length > page * 5 && !categoryName, [
+  const hasNext = useCallback(() => postsStore.posts && postsStore.posts.length > page * 5 && !categoryName, [
     page,
     categoryName
   ]);
 
-  const hasPrevious = React.useCallback(() => page > 1 && !categoryName, [page, categoryName]);
+  const hasPrevious = useCallback(() => page > 1 && !categoryName, [page, categoryName]);
 
   return loaded ? (
     <DefaultLayout>
@@ -70,7 +70,8 @@ const Home: NextPage = ({ paramPage = 1, paramCategoryName = '' }: IProps) => {
             <figure
               className="absolute-bg preview__img"
               style={{
-                backgroundImage: `url(${post.image})`,
+                backgroundImage: `url(${post.image ||
+                  `/static/image/so-simple-sample-image-${(post.id % 7) + 1}.jpg`})`,
                 display: previewIndex === index ? 'block' : 'none'
               }}
               key={post.id}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -13,13 +14,16 @@ interface IProps {
 }
 
 const PostsLayout = ({ postData, nextPostData, children }: React.PropsWithChildren<IProps>) => {
-  React.useEffect(() => {
+  useEffect(() => {
     var d = document,
       s = d.createElement('script');
     s.src = 'https://jicjjang.disqus.com/embed.js';
     s.setAttribute('data-timestamp', `${+new Date()}`);
     (d.head || d.body).appendChild(s);
   }, []);
+
+  const backgroundImage = `url(${postData.image ||
+    `/static/image/so-simple-sample-image-${(postData.id % 7) + 1}.jpg`})`;
 
   const postDate = (date: string) => {
     const postDate = new Date(date);
@@ -47,7 +51,7 @@ const PostsLayout = ({ postData, nextPostData, children }: React.PropsWithChildr
         <article itemProp="blogPost" itemScope={true} itemType="http://schema.org/BlogPosting">
           <header className="section-padding--lg mast">
             <BackToPosts />
-            <figure className="absolute-bg mast__img" style={{ backgroundImage: `url(${postData.image})` }} />
+            <figure className="absolute-bg mast__img" style={{ backgroundImage }} />
             <div className="mast__container">
               <span>
                 <time itemProp="datePublished">{postDate(postData.date)}</time>

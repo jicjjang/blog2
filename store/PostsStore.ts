@@ -8,7 +8,7 @@ export interface IPost {
   date: string;
   category: string;
   description: string;
-  image: string;
+  image?: string;
 }
 
 const Post = types.model('Post', {
@@ -19,7 +19,7 @@ const Post = types.model('Post', {
   date: types.string,
   category: types.string,
   description: types.string,
-  image: types.string
+  image: types.maybe(types.string)
 });
 
 const PostsStore = types
