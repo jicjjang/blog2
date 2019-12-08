@@ -9,6 +9,15 @@ module.exports = [
   //   image: "/static/image/revlog/revlog.jpg"
   // },
   {
+    id: 53,
+    layout: 'post',
+    path: '/post/2019-review',
+    title: '2019년 회고',
+    date: '2019-12-07',
+    category: 'Etc',
+    description: '2019, 20대 마지막 1년 돌아보기'
+  },
+  {
     id: 52,
     layout: 'post',
     path: '/post/scale-up-for-security',
