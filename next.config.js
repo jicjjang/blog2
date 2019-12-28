@@ -16,6 +16,7 @@ const postPages = postContents.reduce(
 
 module.exports = withSass({
   cssModules: true,
+  exportTrailingSlash: true,
   webpack(config, _options) {
     config.module.rules.push({
       test: /\.md$/,
