@@ -1,0 +1,200 @@
+<!DOCTYPE html><html><head><link rel="canonical" href="https://jicjjang.github.io"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Lora|Space+Mono:700"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script><title>June blog</title><link rel="stylesheet" href="/static/css/main.css"/><link rel="stylesheet" href="/static/css/spinner.css"/><link rel="icon" href="/static/favicon.png"/><link rel="alternate" hrefLang="x-default" href="https://jicjjang.github.io"/><link rel="alternate" hrefLang="ko-kr" href="https://jicjjang.github.io"/><meta http-equiv="cache-control" content="Public"/><meta http-equiv="Expires" content="1800"/><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content="This blog has been used since 2019 using Nextjs with Reactjs"/><meta name="author" content="Junseok, Choi &lt;jicjjang12@gmail.com&gt;"/><meta name="google-site-verification" content="DL3OehOD_wV9A1S0SRWoeXbMtlE5SeUZPlwGrFvPHQ8"/><meta name="naver-site-verification" content="a914a06593ce48762aa25cbb7d5e96042da6e549"/><meta name="robots" content="index,follow"/><meta name="og:type" content="blog"/><meta name="twitter:card" content="summary"/><meta name="twitter:creator" content="@jicjjang"/><meta name="twitter:site" content="June"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css"/><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/><meta charSet="utf-8"/><title>자바스크립트 성능 최적화 3 - June blog</title><meta name="og:title" content="자바스크립트 성능 최적화 3"/><meta name="og:url" content="https://jicjjang.github.io/post/javascript-optimize-3"/><meta name="og:site_name" content="자바스크립트 성능 최적화 3"/><meta name="og:description" content="자바스크립트 성능 최적화 3"/><meta name="og:image" content="https://jicjjang.github.io/static/image/javascript/optimize/background.jpg"/><meta name="twitter:description" content="자바스크립트 성능 최적화 3"/><meta name="twitter:title" content="자바스크립트 성능 최적화 3"/><meta name="twitter:url" content="https://jicjjang.github.io/post/javascript-optimize-3"/><meta name="twitter:site" content="https://jicjjang.github.io/post/javascript-optimize-3"/><meta name="twitter:domain" content="https://jicjjang.github.io/post/javascript-optimize-3"/><meta name="twitter:image" content="https://jicjjang.github.io/static/image/javascript/optimize/background.jpg"/><meta name="next-head-count" content="14"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js" as="script"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js" as="script"/><link rel="preload" href="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.15c31151fcdd343a2908.js" as="script"/><link rel="preload" href="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" as="script"/></head><body><div id="__next"><main><article itemProp="blogPost" itemscope="" itemType="http://schema.org/BlogPosting"><header class="section-padding--lg mast"><a class="nav nav--white" itemProp="url" href="/"><i class="fa fa-lg fa-arrow-left"></i><span>Back to Posts</span></a><figure class="absolute-bg mast__img" style="background-image:url(/static/image/javascript/optimize/background.jpg)"></figure><div class="mast__container"><span><time itemProp="datePublished">5 / 18, 2017</time></span><h1 itemProp="name headline">자바스크립트 성능 최적화 3</h1><span>Posted in <!-- -->Javascript</span></div></header><section class="section-padding post markdown-body" itemProp="articleBody"><p>읽을수록 모르던 부분이 계속 등장하는데요, 3장도 바로 진행해보겠습니다.</p>
+<h2 id="3-dom-스크립팅">3. DOM 스크립팅</h2>
+<p>DOM 병목이 쉽게 일어나고, 스크립팅 시간이 오래걸리는데</p>
+<ol>
+<li>DOM에 대한 접근과 수정</li>
+<li>DOM 요소의 스타일 변경, 화면 재구성을 초래하는 것</li>
+<li>DOM 이벤트를 통한 사용자 상호작용 처리</li>
+</ol>
+<p>3가지를 주제로 진행하겠습니다.</p>
+<h3 id="3-1-브라우저-세계의-dom">3-1. 브라우저 세계의 DOM</h3>
+<p>브라우저마다 DOM과 DOM 스크립팅에 각각 다른 엔진을 사용합니다.
+서로 다른 엔진간의 통신을 하기 때문에 느릴수 밖에 없는데요,
+그렇다면 어떻게 성능을 끌어올릴지 알아봅시다.</p>
+<h3 id="3-2-dom-접근과-수정">3-2. DOM 접근과 수정</h3>
+<p>DOM에 접근하기만 해도 리소스를 소모합니다. 그런 상황에서 DOM을 수정한다면?
+더욱 많은 리소스를 잡아먹게 되겠죠? 최대한 DOM에 대한 접근을 최소화해야 하기 때문에
+수정 및 접근 작업에서 반복문은 최악입니다.</p>
+<pre><code class="language-js">function innerHTMLLoop() {
+  for (var count = 0; count &lt; 15000; count++) {
+    document.getElementById(&#39;here&#39;).innerHTML += &#39;a&#39;;
+  }
+}</code></pre>
+<p>앞에서 봤던 이슈와 동일합니다. DOM에 대한 접근이 많아진다면 DOM을 변수에 할당하고 사용해야 합니다.
+위 코드는 DOM에 접근할 때 한번, DOM의 값을 바꿀 때 한번, 반복문을 돌 때마다 2번씩 요소에 접근하게 됩니다.</p>
+<pre><code class="language-js">function innerHTMLLoop() {
+  var content = &#39;&#39;;
+  for (var count = 0; count &lt; 15000; count++) {
+    content += &#39;a&#39;;
+  }
+  document.getElementById(&#39;here&#39;).innerHTML += content;
+}</code></pre>
+<p>모든 브라우저에서 이처럼 변수에 DOM을 저장하고 사용하는 것이 효과적으로 나타납니다.</p>
+<hr>
+<p>HTML 컬렉션을 반환하는 메서드에 대해서 알아보겠습니다.</p>
+<ol>
+<li>document.getElementsByName()</li>
+<li>document.getElementsByClassName()</li>
+<li>document.getElementsByTagName()</li>
+<li>document.images</li>
+<li>document.links</li>
+<li>document.forms</li>
+<li>document.forms[0].elements</li>
+</ol>
+<p>이러한 HTML Collection은 동적이기 때문에</p>
+<pre><code class="language-javascript">var alldivs = document.getElementsByTagName(&#39;div&#39;);
+for (var i = 0; i &lt; alldivs.length; i++) {
+  document.body.appendChild(document.createElement(&#39;div&#39;));
+}</code></pre>
+<p>위 코드가 무한루프로 동작하게 됩니다. body에 div 태그가 추가될 때마다
+alldivs는 동적으로 증가하기 때문에 i가 1씩 증가할 때 alldivs도 1씩 증가하기 때문입니다.
+(그렇기 때문에 <code>느.립.니.다.</code>)</p>
+<p>또한 HTML Collection은 일반 array가 아니기 때문에 반복문보다 느립니다. 그래서 사용할 때에는
+반복문에 복사한 뒤 사용해야 합니다.</p>
+<pre><code class="language-javascript">function toArray(coll) {
+  for (var i = 0, a = [], len = coll.length; i &lt; len; i++) {
+    a[i] = coll[i];
+  }
+  return a;
+}</code></pre>
+<p>반복하거나 length에 접근하는 것만으로도 Collection을 갱신해야 하기 때문입니다.</p>
+<hr>
+<p>DOM의 특정 부분에 접근하는 방법에 대해 알아보겠습니다. childNodes나 nextSibling으로 형제 요소를
+선택하여 작업할 수 있는데</p>
+<pre><code class="language-javascript">function testNextSibling() {
+  val el = document.getElementById(&#39;ddd&#39;),
+      ch = el.firstChild,
+      name = &#39;&#39;;
+
+  do {
+    name = ch.nodeName;
+  } while(ch = ch.nextSibling);
+  return name;
+}
+
+function testChildNodes() {
+  var el = document.getElementById(&#39;ddd&#39;),
+      ch = el.childNodes,
+      len = ch.length,
+      name = &#39;&#39;;
+
+  for (var count = 0; count &lt; len; count++) {
+    name = ch[count].nodeName;
+  }
+  return name;
+}</code></pre>
+<p>둘 중 어떠한 방법을 사용해도 상관이 없습니다. 다만, childNodes 같은 경우엔
+length를 캐시한 뒤 사용해야 합니다.</p>
+<p>자식요소를 조금 더 세밀하게 정해야 할 때가 있습니다.</p>
+<ol>
+<li>document.getElementById</li>
+<li>document.getElementsByName</li>
+<li>document.getElementsByClassName</li>
+<li>document.getElementsByTagName</li>
+</ol>
+<p>위 4가지 방식 뿐만 아니라</p>
+<ol>
+<li>document.querySelectorAll(&#39;#menu a&#39;)</li>
+<li>document.querySelector(&#39;#menu a&#39;)</li>
+</ol>
+<p>이런 방식 또한 가능합니다. 여러번 질의하는 것 보다는 querySelector가 훨씬 효율적입니다.</p>
+<h3 id="3-3-리페인트와-리플로우">3-3. 리페인트와 리플로우</h3>
+<p>브라우저가 데이터를 내려받으면 페이지 구조를 나타내는 DOM 트리와
+DOM 트리를 어떻게 표시할 지에 대한 정보를 가진 랜더 트리, 두가지를 만듭니다.</p>
+<p>두 트리를 다 만들면 브라우저는 페이지 요소를 표시합니다. (페인트)</p>
+<p>resize 이벤트가 발생하거나 비슷한 이벤트가 발생한다면 요소들의 정보를 다시 계산 (리플로우)해야하고
+계산 한 뒤 다시 그려줘야 합니다.(리페인트) 리소스를 많이 잡아먹는것이 리플로우인데 배경색만 바꾼다고
+가정한다면 리플로우 없이 리페인트만 일어납니다.</p>
+<p>이러한 경우 리소스가 많이 소모되지 않기 때문에 성능 저하가 일어나지 않습니다.
+그렇기 때문에 리플로우를 최소화 하는 작업이 필수입니다.</p>
+<p>리플로우가 일어나는 조건은</p>
+<ul>
+<li><ol>
+<li>보이는 (display, visibility)DOM 요소를 추가 혹은 제거</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>요소의 위치가 바뀜</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>요소의 크기가 바뀜</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>텍스트의 내용 변경, 이미지가 다른 크기 이미지로 대체되는 등의 내용 변경</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>페이지를 처음 표시</li>
+</ol>
+</li>
+<li><ol start="6">
+<li>브라우저 창의 크기 변경</li>
+</ol>
+</li>
+</ul>
+<p>어떤 것을 바꾸느냐에 따라 전체를, 일부를 다시 계산합니다.
+리플로우를 계속 발생하는 것도 낭비기 때문에 랜더 트리를 큐에 모았다 실행할 수 있습니다.</p>
+<ol>
+<li>offsetTop, offsetLeft, offsetWidht, offsetHeight</li>
+<li>scrollTop, scrollLeft, scrollWidht, scrollHeight</li>
+<li>clientTop, clientLeft, clientWidht, clientHeight</li>
+</ol>
+<p>이런 속성은 레이아웃을 바로바로 반영해야 하므로 브라우저가 랜더링 큐에 대기중인 랜더 트리와 함께
+강제로 리플로우를 진행합니다. 그렇기 때문에 스타일을 바꿀 때 <code>위 속성을 쓰지 않는게 중요합니다.</code></p>
+<pre><code class="language-javascript">var computed = document.body.style;
+var tmp = &#39;&#39;;
+
+bodyStyle.color = &#39;red&#39;;
+tmp = bodyStyle.backgroundColor;
+bodyStyle.color = &#39;white&#39;;
+tmp = bodyStyle.backgroundImage;
+bodyStyle.color = &#39;green&#39;;
+tmp = bodyStyle.backgroundAttachment;</code></pre>
+<p>위 코드처럼 레이아웃을 속성을 변경하고, 값을 가져오는 일을 번갈아가며 하는 것을 매우 비효율적 이므로</p>
+<pre><code class="language-javascript">var computed = document.body.style;
+var tmp = &#39;&#39;;
+
+bodyStyle.color = &#39;red&#39;;
+bodyStyle.color = &#39;white&#39;;
+bodyStyle.color = &#39;green&#39;;
+tmp = bodyStyle.backgroundColor;
+tmp = bodyStyle.backgroundImage;
+tmp = bodyStyle.backgroundAttachment;</code></pre>
+<p>이렇게 같은 일을 한꺼번에 몰아주는 것이 효율적이고 더 빠릅니다.</p>
+<p>그리고</p>
+<pre><code class="language-javascript">var el = document.getElementById(&#39;divv&#39;);
+el.style.borderLeft = &#39;1px&#39;;
+el.style.borderRight = &#39;2px&#39;;
+el.style.padding = &#39;5px&#39;;</code></pre>
+<p>최악의 경우 리플로우가 3번 일어나는 코드입니다. 이런 코드는</p>
+<pre><code class="language-javascript">var el = document.getElementById(&#39;divv&#39;);
+el.style.cssText = &#39;border-left: 1px; border-right: 2px; padding: 5px;&#39;</code></pre>
+<p>이렇게 바꿔줄 수 있습니다. 다른 방법으론 class를 토글하는 방법도 있습니다.</p>
+<hr>
+<p>하지만 어쩔 수 없이 여러번 계산을 해야 할 때에는 DOM의 변경을 문서의 흐름에서 분리하고
+다 변경된 후 적용시키는 방법이 있습니다.</p>
+<p>데이터를 넣은 &lt;li&gt; 태그를 삽입한다고 가정할 때,
+createElement를 통해 li 여러개를 생성한 후, &lt;ul&gt; 태그 안에 넣고
+가장 마지막에 DOM에 추가하는 것입니다. 이렇게 하면 리플로우를 최소화할 수 있습니다.</p>
+<hr>
+<p>애니메이션을 할 때에는 절대 위치를 지정한 후 동작해야합니다.
+절대 위치에서는 리플로우가 동작하지 않기 때문에 포지션 변경, 애니메이션, 포지션 복귀
+순서로 진행을 해야합니다.</p>
+<h3 id="3-4-이벤트-위임">3-4. 이벤트 위임</h3>
+<p>자바스크립트에서 이벤트는 발생 후 부모 요소로 버블링되어 올라가므로 부모 요소에서 자식 요소의
+이벤트를 처리할 수 있습니다.</p>
+<pre><code class="language-html">&lt;div id=&quot;one&quot;&gt;
+  &lt;div id=&quot;two&quot;&gt;
+    &lt;a onclick=&quot;...&quot;&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>위와 같은 코드에서 &lt;a&gt; 태그를 클릭하면 #two 요소, 그 다음으로 #one 요소, 마지막으로 window까지
+이벤트가 전파됩니다. 이렇게 이벤트가 퍼져 이벤트 대상이 아닌 다른 요소에서 이벤트를 동작시키는 것을
+위임이라고 합니다.</p>
+<p>물론 stopPropagation 메서드와 preventDefault 메서드로 위임을 제어할 수 있습니다.</p>
+<hr>
+<p>3장의 내용은 여기까지 입니다. 프론트엔드에서 가장 중요하다고 생각한 Reflow와 Repaint에 대한 내용이
+실려있는 장이었습니다. 앞으로도 많은 내용이 기대되네요!</p>
+</section><section class="profile"><div class="profile__card"><div class="profile__img"><figure class="absolute-bg" style="background-image:url(/static/image/mine.jpg)"></figure></div><div class="profile__container"><p>프론트 개발을 좋아하고 꾸준히 공부하는 백엔드 개발자. 새로운 기술에 관심이 많음. React + Vue 개발 진행중. 현재 Kakaopay 재직중.</p><ul class="profile__social"><li><a class="fa fa-lg fa-envelope-o" href="mailto:jicjjang12@gmail.com"></a></li><li><a class="fa fa-lg fa-github" href="https://github.com/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-linkedin" href="https://www.linkedin.com/in/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-instagram" href="https://instagram.com/jicjjang" target="_blank"></a></li></ul></div></div></section></article><section class="next"><a class="next__link" itemProp="url" style="background-image:url(/static/image/javascript/optimize/background.jpg)" href="/post/javascript-optimize-4/"><div class="next__container"><span>Read Next</span><h2>자바스크립트 성능 최적화 4</h2></div></a></section><div id="disqus_thread" style="margin:50px 10% 0 10%"></div></main></div><script id="__NEXT_DATA__" type="application/json">{"dataManager":"[]","props":{"pageProps":{"postId":"javascript-optimize-3"}},"page":"/post","query":{"id":"javascript-optimize-3"},"buildId":"1K6jiUe679ZNAQ69RjW6W","nextExport":true}</script><script nomodule="" src="/_next/static/runtime/polyfills-ebd4705da3402b2d78e1.js"></script><script async="" data-next-page="/post" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js"></script><script async="" data-next-page="/_app" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js"></script><script src="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" async=""></script><script src="/_next/static/chunks/commons.15c31151fcdd343a2908.js" async=""></script><script src="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" async=""></script><script src="/static/script/google-analytics.js"></script></body></html>

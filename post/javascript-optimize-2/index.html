@@ -1,0 +1,109 @@
+<!DOCTYPE html><html><head><link rel="canonical" href="https://jicjjang.github.io"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Lora|Space+Mono:700"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script><title>June blog</title><link rel="stylesheet" href="/static/css/main.css"/><link rel="stylesheet" href="/static/css/spinner.css"/><link rel="icon" href="/static/favicon.png"/><link rel="alternate" hrefLang="x-default" href="https://jicjjang.github.io"/><link rel="alternate" hrefLang="ko-kr" href="https://jicjjang.github.io"/><meta http-equiv="cache-control" content="Public"/><meta http-equiv="Expires" content="1800"/><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content="This blog has been used since 2019 using Nextjs with Reactjs"/><meta name="author" content="Junseok, Choi &lt;jicjjang12@gmail.com&gt;"/><meta name="google-site-verification" content="DL3OehOD_wV9A1S0SRWoeXbMtlE5SeUZPlwGrFvPHQ8"/><meta name="naver-site-verification" content="a914a06593ce48762aa25cbb7d5e96042da6e549"/><meta name="robots" content="index,follow"/><meta name="og:type" content="blog"/><meta name="twitter:card" content="summary"/><meta name="twitter:creator" content="@jicjjang"/><meta name="twitter:site" content="June"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css"/><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/><meta charSet="utf-8"/><title>자바스크립트 성능 최적화 2 - June blog</title><meta name="og:title" content="자바스크립트 성능 최적화 2"/><meta name="og:url" content="https://jicjjang.github.io/post/javascript-optimize-2"/><meta name="og:site_name" content="자바스크립트 성능 최적화 2"/><meta name="og:description" content="자바스크립트 성능 최적화 2"/><meta name="og:image" content="https://jicjjang.github.io/static/image/javascript/optimize/background.jpg"/><meta name="twitter:description" content="자바스크립트 성능 최적화 2"/><meta name="twitter:title" content="자바스크립트 성능 최적화 2"/><meta name="twitter:url" content="https://jicjjang.github.io/post/javascript-optimize-2"/><meta name="twitter:site" content="https://jicjjang.github.io/post/javascript-optimize-2"/><meta name="twitter:domain" content="https://jicjjang.github.io/post/javascript-optimize-2"/><meta name="twitter:image" content="https://jicjjang.github.io/static/image/javascript/optimize/background.jpg"/><meta name="next-head-count" content="14"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js" as="script"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js" as="script"/><link rel="preload" href="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.15c31151fcdd343a2908.js" as="script"/><link rel="preload" href="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" as="script"/></head><body><div id="__next"><main><article itemProp="blogPost" itemscope="" itemType="http://schema.org/BlogPosting"><header class="section-padding--lg mast"><a class="nav nav--white" itemProp="url" href="/"><i class="fa fa-lg fa-arrow-left"></i><span>Back to Posts</span></a><figure class="absolute-bg mast__img" style="background-image:url(/static/image/javascript/optimize/background.jpg)"></figure><div class="mast__container"><span><time itemProp="datePublished">5 / 18, 2017</time></span><h1 itemProp="name headline">자바스크립트 성능 최적화 2</h1><span>Posted in <!-- -->Javascript</span></div></header><section class="section-padding post markdown-body" itemProp="articleBody"><p>1장에 이어서 2장도 바로 진행하겠습니다~</p>
+<h2 id="2-데이터-접근">2. 데이터 접근</h2>
+<p>데이터는 총 4개의 형식으로 이루어집니다.</p>
+<ol>
+<li>리터럴 값 (Number, boolean, Object, Array, Function, Regex, null, undefined)</li>
+<li>변수</li>
+<li>배열 항목</li>
+<li>객체 맴버</li>
+</ol>
+<p>각 데이터 저장 위치와 브라우저마다 I/O 시간이 모두 다릅니다.</p>
+<h3 id="2-1-스코프-관리">2-1. 스코프 관리</h3>
+<p>자바스크립트의 함수는 객체 (Function의 인스턴스) 입니다.</p>
+<pre><code class="language-js">function add(num1, num2) {
+  var sum = num1 + num2;
+  return sum;
+}</code></pre>
+<p>간단한 add 함수가 있을 때, add 함수의 scope chain 입니다.</p>
+<figure style="text-align: center;">
+  <img src="https://jicjjang.github.io/static/image/javascript/optimize/2/scope1.jpg" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+</figure>
+
+<p>이 add 함수를 실행할 때의 scope chain의 변화 입니다.</p>
+<pre><code class="language-js">var total = add(5, 10);</code></pre>
+<figure style="text-align: center;">
+  <img src="https://jicjjang.github.io/static/image/javascript/optimize/2/scope2.jpg" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+</figure>
+
+<p>Activeation object는 생성이 될때마다 만들어졌다 파괴되었다를 반복합니다. 변수를 할당하거나 계산할 때, 등등에서 자신의 값에 맞는 변수를 찾기 위해 scope chain을 검색합니다.
+Activation object에 값이 있다면 할당을, 없으면 Global object에서 다시 검색을 진행합니다. 이 검색의 과정이 복잡할수록 성능이 떨어집니다.
+성능 개선을 위해선 최대한 지역 변수, Global object에 있는 값들을 사용해야 합니다.</p>
+<p>반복되는 전역객체는 할당 후 사용을 해야합니다.</p>
+<pre><code class="language-js">var a = document.body,
+link = document.getElementsByTagName(&#39;a&#39;);
+
+document.getElementById...</code></pre>
+<p>가 아닌</p>
+<pre><code class="language-js">var doc = document,
+bd = doc.body,
+link = doc.getElementsByTagName(&#39;a&#39;)
+
+doc.getElementById...</code></pre>
+<p>와 같은 작업이 필요합니다. 이 예제는 매우 간단하지만 수십, 수백번 전역 객체에 접근을 매번 새로한다고 생각하면 끔찍하네요.</p>
+<pre><code class="language-js">function assignEvents() {
+  var id = &#39;xdi9592&#39;;
+
+  document.getElementById(&#39;save-btn&#39;).onclick = function (e) {
+    saveDocument(id);
+  }
+}</code></pre>
+<p>클로저를 생각해봅시다. 함수안에 함수가 존재하네요. 이런 경우에는 scope chain을 공유하게 됩니다.</p>
+<figure style="text-align: center;">
+  <img src="https://jicjjang.github.io/static/image/javascript/optimize/2/closure1.jpg" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+</figure>
+
+<p>실행 당시에 생성되는 Activation object를 closure도 공유를 하는데, 함수인 closure가 생성될 때에는 Activation object가
+생성이 안될까요? 물론 생성됩니다. 그렇기 때문에 scope chain이 또 한번 변경이 됩니다.</p>
+<figure style="text-align: center;">
+  <img src="https://jicjjang.github.io/static/image/javascript/optimize/2/closure2.jpg" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+</figure>
+
+<p>여기서 발생하는 성능문제가 있죠. 우선순위가 0, 1인 scope chain에서 값을 찾지 못했을 경우인데요, 만약 closure가 여러겹으로 있다고 한다면
+상당한 성능 저하로 이어지게 됩니다.</p>
+<h3 id="2-2-객체-멤버">2-2. 객체 멤버</h3>
+<p>객체 멤버 접근은 리터럴, 변수, 배열 접근보다 느립니다. 그 이유를 알아봅시다.</p>
+<p>자바스크립트의 객체는 프로토타입에 기반합니다. 프로토타입은 다른 객체의 기반이 되는 객체로, 새 객체가 가져야 할 멤버를 정의 및 구현합니다.
+프로토타입 객체는 해당 객체의 모든 인스턴스 사이에서 공유됩니다.</p>
+<p>객체는 내부 속성을 통해 자신의 프로토타입에 묶이며, 브라우저들은 이 속성을 <code><strong>proto</strong></code>라는 이름으로 노출합니다.</p>
+<pre><code class="language-javascript">var book = {
+  title: &#39;High Performance Javascript&#39;,
+  publisher: &#39;Junseok&#39;
+};
+
+alert(book.toString()); // [object Object]</code></pre>
+<p>prototype 또한 객체이기 때문에 prototype에 대한 키가 존재합니다.</p>
+<figure style="text-align: center;">
+  <img src="https://jicjjang.github.io/static/image/javascript/optimize/2/prototype1.jpg" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+</figure>
+
+<p>prototype 구조는 다음과 같으며 title, publisher를 제외하는 prototype에 기능이 포함되어 있기 때문에, 위 코드의 toString과 같은 함수는 prototype에 있는 기능을
+사용하게 됩니다. (scope chain을 보면 알 수 있듯이 Activation object에 toString이 있다면 그 기능으로 사용합니다. like overriding)</p>
+<pre><code class="language-javascript">function Book(title, publisher) {
+  this.title = title;
+  this.publisher = publisher;
+}
+
+Book.prototype.sayTitle = function () {
+  alert(this.title);
+}
+
+var book1 = new Book(&#39;High performance js 1&#39;, &#39;junseok&#39;);
+var book2 = new Book(&#39;High performance js 2&#39;, &#39;junseok&#39;);
+
+alert(boo1 instanceof Book);    // true
+alert(boo1 instanceof Object);  // true
+
+book1.sayTitle();             // &#39;High performance js 1&#39;
+alert(book1.toString());      // [object Object]</code></pre>
+<figure style="text-align: center;">
+  <img src="https://jicjjang.github.io/static/image/javascript/optimize/2/prototype2.jpg" alt="image" style="display:inline-block; width:100%; margin:0 auto;">
+</figure>
+
+<p>코드와 코드에 해당하는 prototype chain 구조입니다. Book 함수의 프로토타입(prototype)은 Book.prototype 이고, Book 인스턴스의 프로토타입(<code><strong>proto</strong></code>) 또한 Book.prototype 입니다.
+그리고 Book.prototype의 프로토타입 (Book.prototype.prototype)은 Object가 됩니다.</p>
+<p><code>물론 관계가 깊어질수록 성능은 저하됩니다.</code></p>
+<p>객체 멤버를 해석하는 작업도 있습니다. <code>.</code> 마다 객체 멤버를 해석하는 작업을하기 때문에 window.location.href가 window.location.href.toString()보다 빠릅니다.</p>
+<hr>
+<p>2장도 짧은 정리로 끝났는데, HTML4를 사용하던 때의, 오래된 책이지만 몰랐던 부분이 간간히 나옵니다.
+중요한 부분을 잘 집어서 더 정리해보겠습니다 ^^</p>
+</section><section class="profile"><div class="profile__card"><div class="profile__img"><figure class="absolute-bg" style="background-image:url(/static/image/mine.jpg)"></figure></div><div class="profile__container"><p>프론트 개발을 좋아하고 꾸준히 공부하는 백엔드 개발자. 새로운 기술에 관심이 많음. React + Vue 개발 진행중. 현재 Kakaopay 재직중.</p><ul class="profile__social"><li><a class="fa fa-lg fa-envelope-o" href="mailto:jicjjang12@gmail.com"></a></li><li><a class="fa fa-lg fa-github" href="https://github.com/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-linkedin" href="https://www.linkedin.com/in/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-instagram" href="https://instagram.com/jicjjang" target="_blank"></a></li></ul></div></div></section></article><section class="next"><a class="next__link" itemProp="url" style="background-image:url(/static/image/javascript/optimize/background.jpg)" href="/post/javascript-optimize-3/"><div class="next__container"><span>Read Next</span><h2>자바스크립트 성능 최적화 3</h2></div></a></section><div id="disqus_thread" style="margin:50px 10% 0 10%"></div></main></div><script id="__NEXT_DATA__" type="application/json">{"dataManager":"[]","props":{"pageProps":{"postId":"javascript-optimize-2"}},"page":"/post","query":{"id":"javascript-optimize-2"},"buildId":"1K6jiUe679ZNAQ69RjW6W","nextExport":true}</script><script nomodule="" src="/_next/static/runtime/polyfills-ebd4705da3402b2d78e1.js"></script><script async="" data-next-page="/post" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js"></script><script async="" data-next-page="/_app" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js"></script><script src="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" async=""></script><script src="/_next/static/chunks/commons.15c31151fcdd343a2908.js" async=""></script><script src="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" async=""></script><script src="/static/script/google-analytics.js"></script></body></html>

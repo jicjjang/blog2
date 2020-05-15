@@ -1,0 +1,52 @@
+<!DOCTYPE html><html><head><link rel="canonical" href="https://jicjjang.github.io"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Lora|Space+Mono:700"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script><title>June blog</title><link rel="stylesheet" href="/static/css/main.css"/><link rel="stylesheet" href="/static/css/spinner.css"/><link rel="icon" href="/static/favicon.png"/><link rel="alternate" hrefLang="x-default" href="https://jicjjang.github.io"/><link rel="alternate" hrefLang="ko-kr" href="https://jicjjang.github.io"/><meta http-equiv="cache-control" content="Public"/><meta http-equiv="Expires" content="1800"/><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content="This blog has been used since 2019 using Nextjs with Reactjs"/><meta name="author" content="Junseok, Choi &lt;jicjjang12@gmail.com&gt;"/><meta name="google-site-verification" content="DL3OehOD_wV9A1S0SRWoeXbMtlE5SeUZPlwGrFvPHQ8"/><meta name="naver-site-verification" content="a914a06593ce48762aa25cbb7d5e96042da6e549"/><meta name="robots" content="index,follow"/><meta name="og:type" content="blog"/><meta name="twitter:card" content="summary"/><meta name="twitter:creator" content="@jicjjang"/><meta name="twitter:site" content="June"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css"/><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/><meta charSet="utf-8"/><title>Web Presentation - June blog</title><meta name="og:title" content="Web Presentation"/><meta name="og:url" content="https://jicjjang.github.io/post/web-presentation"/><meta name="og:site_name" content="Web Presentation"/><meta name="og:description" content="prezi와 같은 web presentation을 직접 코드로 동작해보기"/><meta name="og:image" content="https://jicjjang.github.io/static/image/etc/web-presentation/web-presentation.png"/><meta name="twitter:description" content="prezi와 같은 web presentation을 직접 코드로 동작해보기"/><meta name="twitter:title" content="Web Presentation"/><meta name="twitter:url" content="https://jicjjang.github.io/post/web-presentation"/><meta name="twitter:site" content="https://jicjjang.github.io/post/web-presentation"/><meta name="twitter:domain" content="https://jicjjang.github.io/post/web-presentation"/><meta name="twitter:image" content="https://jicjjang.github.io/static/image/etc/web-presentation/web-presentation.png"/><meta name="next-head-count" content="14"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js" as="script"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js" as="script"/><link rel="preload" href="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.15c31151fcdd343a2908.js" as="script"/><link rel="preload" href="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" as="script"/></head><body><div id="__next"><main><article itemProp="blogPost" itemscope="" itemType="http://schema.org/BlogPosting"><header class="section-padding--lg mast"><a class="nav nav--white" itemProp="url" href="/"><i class="fa fa-lg fa-arrow-left"></i><span>Back to Posts</span></a><figure class="absolute-bg mast__img" style="background-image:url(/static/image/etc/web-presentation/web-presentation.png)"></figure><div class="mast__container"><span><time itemProp="datePublished">2 / 11, 2015</time></span><h1 itemProp="name headline">Web Presentation</h1><span>Posted in <!-- -->Etc</span></div></header><section class="section-padding post markdown-body" itemProp="articleBody"><p><p>블로그를 만들면서 예전부터 써보고 싶었던 라이브러리들을 사용해보기로 했습니다. 검색해보니 reveal.js, impress.js 두개가 1, 2위를 다투고 있었습니다.
+회사 동료분이 reveal.js를 사용하는  것을 본 기억이 있으니 impress.js를 해보기로 결정!!</p></p>
+<figure style="text-align: center;">
+  <figcaption><a href="https://github.com/bartaz/impress.js/find/master" title="desciprtion">&lt;impress.js github&gt;</a></figcaption>
+</figure>
+
+<p><p>github을 찾아봤으나 따로 syntax같은 부분은 설명이 없이, 예제로 있는 index 파일이 전부였습니다. 이 파일이 syntax 설명 그 자체인데, 이 파일을 위주로 알아보겠습니다.</p></p>
+<p><pre><code class="language-html">&lt;div id=&quot;impress&quot;&gt;
+  &lt;div id=&quot;bored&quot; class=&quot;step slide&quot; data-x=&quot;-1000&quot; data-y=&quot;-1500&quot;&gt;test&lt;/div&gt;
+  &lt;div class=&quot;step slide&quot; data-x=&quot;0&quot; data-y=&quot;-1500&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;title&quot; class=&quot;step&quot; data-x=&quot;0&quot; data-y=&quot;0&quot; data-scale=&quot;4&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;its&quot; class=&quot;step&quot; data-x=&quot;850&quot; data-y=&quot;3000&quot; data-rotate=&quot;90&quot; data-scale=&quot;5&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;big&quot; class=&quot;step&quot; data-x=&quot;3500&quot; data-y=&quot;2100&quot; data-rotate=&quot;180&quot; data-scale=&quot;6&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;tiny&quot; class=&quot;step&quot; data-x=&quot;2825&quot; data-y=&quot;2325&quot; data-z=&quot;-3000&quot; data-rotate=&quot;300&quot; data-scale=&quot;1&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;ing&quot; class=&quot;step&quot; data-x=&quot;3500&quot; data-y=&quot;-850&quot; data-rotate=&quot;270&quot; data-scale=&quot;6&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;imagination&quot; class=&quot;step&quot; data-x=&quot;6700&quot; data-y=&quot;-300&quot; data-scale=&quot;6&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;source&quot; class=&quot;step&quot; data-x=&quot;6300&quot; data-y=&quot;2000&quot; data-rotate=&quot;20&quot; data-scale=&quot;4&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;one-more-thing&quot; class=&quot;step&quot; data-x=&quot;6000&quot; data-y=&quot;4000&quot; data-scale=&quot;2&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;its-in-3d&quot; class=&quot;step&quot; data-x=&quot;6200&quot; data-y=&quot;4300&quot; data-z=&quot;-100&quot; data-rotate-x=&quot;-40&quot; data-rotate-y=&quot;10&quot; data-scale=&quot;2&quot;&gt;test&lt;/div&gt;
+  &lt;div id=&quot;overview&quot; class=&quot;step&quot; data-x=&quot;3000&quot; data-y=&quot;1500&quot; data-scale=&quot;10&quot;&gt;test&lt;/div&gt;
+&lt;/div&gt;</code></pre></p>
+<p><p><code>&lt;div id=&quot;impress&quot;&gt;</code> 이 태그 내부에 있는 div 태그들이 프레젠테이션 효과를 받는 전부입니다. (나머지는 프레젠테이션과 관련이 없습니다.)
+  딱 봐도 이해하기 쉽게 되어있습니다. 여기서 정리할 부분을 살펴보자면</p></p>
+<ol>
+<li><p>id가 있고, 없고의 차이</p>
+</li>
+<li><p>class=&quot;step&quot;의 유무</p>
+</li>
+<li><p>data-x, y, z / data-scale, rotate / data-rotate-x, y</p>
+<p>이렇게 5개로 나눠 알아보겠습니다.</p>
+<h2 id="1-id가-있고-없고의-차이">1. id가 있고, 없고의 차이</h2>
+<p>우선, impress를 git clone해서 실행을 해보면 바로 알 수 있습니다.</p>
+<figure style="text-align: center;">
+ <img src="https://jicjjang.github.io/static/image/etc/web-presentation/address.png" alt="image">
+</figure>
+
+<p>id가 있는 div는 주소에 id가 나오게 되고, 없는 div는 step이 나오게 되는데, step- 뒤에 몇번째 슬라이드인지 숫자가 나오게 됩니다.</p>
+<h2 id="2-classstep의-유무">2. class=&quot;step&quot;의 유무</h2>
+<p>바로 clone 한 코드에서 step을 제외하고 프레젠테이션을 진행해 보았는데, 슬라이드를 그냥 건너뛰게 되고, 기본 .step에 걸려있던 css들이 무시되었습니다.
+(너무 당연한 얘기를 ㅠㅠ...)</p>
+<h2 id="3-data-x-y-z--data-scale-rotate--data-rotate-x-y">3. data-x, y, z / data-scale, rotate / data-rotate-x, y</h2>
+<h4 id="data-x-y-z">data-x, y, z</h4>
+<p>화면 전환시 x, y, z축으로 이동하는 (prezi와 같이) 효과를 보여줍니다.</p>
+<h4 id="data-scale-rotate">data-scale, rotate</h4>
+<p>화면 전환시 scale(안에 들어가는 값은 배율)로 확대 / 축소를 할 수 있고, rotate(안에 들어가는 값은 각도)로 회전을 할 수 있습니다.</p>
+<h4 id="data-rotate-x-y">data-rotate-x, y</h4>
+<p>화면 전환시 x축을 중심으로 회전, y축을 중심으로 회전합니다. 3D효과를 줄 때 사용합니다.</p>
+<p>첫 포스팅을 간단하게 마무리 하겠습니다. 마지막으로 impress.js의 예제 동영상으로 효과가 어떻게 나오는지 보여드리면서 간단하게 포스팅을 이렇게 마치겠습니다.</p>
+<iframe style="width:100%;height:420px;"  src="https://www.youtube.com/embed/S_0E1iOwoe8?autoplay=1&autohide=1&loop=1&playlist=S_0E1iOwoe8" frameborder="0" allowfullscreen></iframe>
+</li>
+</ol>
+</section><section class="profile"><div class="profile__card"><div class="profile__img"><figure class="absolute-bg" style="background-image:url(/static/image/mine.jpg)"></figure></div><div class="profile__container"><p>프론트 개발을 좋아하고 꾸준히 공부하는 백엔드 개발자. 새로운 기술에 관심이 많음. React + Vue 개발 진행중. 현재 Kakaopay 재직중.</p><ul class="profile__social"><li><a class="fa fa-lg fa-envelope-o" href="mailto:jicjjang12@gmail.com"></a></li><li><a class="fa fa-lg fa-github" href="https://github.com/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-linkedin" href="https://www.linkedin.com/in/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-instagram" href="https://instagram.com/jicjjang" target="_blank"></a></li></ul></div></div></section></article><section class="next"><a class="next__link" itemProp="url" style="background-image:url(/static/image/etc/RESTful/restful-web-services.jpg)" href="/post/RESTful/"><div class="next__container"><span>Read Next</span><h2>RESTful</h2></div></a></section><div id="disqus_thread" style="margin:50px 10% 0 10%"></div></main></div><script id="__NEXT_DATA__" type="application/json">{"dataManager":"[]","props":{"pageProps":{"postId":"web-presentation"}},"page":"/post","query":{"id":"web-presentation"},"buildId":"1K6jiUe679ZNAQ69RjW6W","nextExport":true}</script><script nomodule="" src="/_next/static/runtime/polyfills-ebd4705da3402b2d78e1.js"></script><script async="" data-next-page="/post" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js"></script><script async="" data-next-page="/_app" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js"></script><script src="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" async=""></script><script src="/_next/static/chunks/commons.15c31151fcdd343a2908.js" async=""></script><script src="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" async=""></script><script src="/static/script/google-analytics.js"></script></body></html>

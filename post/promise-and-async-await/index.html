@@ -1,0 +1,109 @@
+<!DOCTYPE html><html><head><link rel="canonical" href="https://jicjjang.github.io"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Lora|Space+Mono:700"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script><title>June blog</title><link rel="stylesheet" href="/static/css/main.css"/><link rel="stylesheet" href="/static/css/spinner.css"/><link rel="icon" href="/static/favicon.png"/><link rel="alternate" hrefLang="x-default" href="https://jicjjang.github.io"/><link rel="alternate" hrefLang="ko-kr" href="https://jicjjang.github.io"/><meta http-equiv="cache-control" content="Public"/><meta http-equiv="Expires" content="1800"/><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content="This blog has been used since 2019 using Nextjs with Reactjs"/><meta name="author" content="Junseok, Choi &lt;jicjjang12@gmail.com&gt;"/><meta name="google-site-verification" content="DL3OehOD_wV9A1S0SRWoeXbMtlE5SeUZPlwGrFvPHQ8"/><meta name="naver-site-verification" content="a914a06593ce48762aa25cbb7d5e96042da6e549"/><meta name="robots" content="index,follow"/><meta name="og:type" content="blog"/><meta name="twitter:card" content="summary"/><meta name="twitter:creator" content="@jicjjang"/><meta name="twitter:site" content="June"/><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css"/><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/><meta charSet="utf-8"/><title>자바스크립트 promise와 async/await - June blog</title><meta name="og:title" content="자바스크립트 promise와 async/await"/><meta name="og:url" content="https://jicjjang.github.io/post/promise-and-async-await"/><meta name="og:site_name" content="자바스크립트 promise와 async/await"/><meta name="og:description" content="자바스크립트의 동기"/><meta name="og:image" content="https://jicjjang.github.io/static/image/javascript/javascript.jpg"/><meta name="twitter:description" content="자바스크립트의 동기"/><meta name="twitter:title" content="자바스크립트 promise와 async/await"/><meta name="twitter:url" content="https://jicjjang.github.io/post/promise-and-async-await"/><meta name="twitter:site" content="https://jicjjang.github.io/post/promise-and-async-await"/><meta name="twitter:domain" content="https://jicjjang.github.io/post/promise-and-async-await"/><meta name="twitter:image" content="https://jicjjang.github.io/static/image/javascript/javascript.jpg"/><meta name="next-head-count" content="14"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js" as="script"/><link rel="preload" href="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js" as="script"/><link rel="preload" href="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.15c31151fcdd343a2908.js" as="script"/><link rel="preload" href="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" as="script"/></head><body><div id="__next"><main><article itemProp="blogPost" itemscope="" itemType="http://schema.org/BlogPosting"><header class="section-padding--lg mast"><a class="nav nav--white" itemProp="url" href="/"><i class="fa fa-lg fa-arrow-left"></i><span>Back to Posts</span></a><figure class="absolute-bg mast__img" style="background-image:url(/static/image/javascript/javascript.jpg)"></figure><div class="mast__container"><span><time itemProp="datePublished">2 / 5, 2017</time></span><h1 itemProp="name headline">자바스크립트 promise와 async/await</h1><span>Posted in <!-- -->Javascript</span></div></header><section class="section-padding post markdown-body" itemProp="articleBody"><p>이번 포스트에서는 <code>자바스크립트의 동기를 위한 promise와 async</code> 를 알아보겠습니다.</p>
+<p>보통 동기화를 위해서 많이 쓰는 방법은 <code>setTimeout</code> 입니다.</p>
+<pre><code class="language-javascript">var a = somethingFunction();
+
+var b = null;
+setTimeout(function () {
+  b = somethingAnotherFunction();
+}, 0);</code></pre>
+<p>위와같은 방식을 이용하여 sync를 맞출 수 있었습니다. 편법이긴 하지만 promise나 async (제가 웹을 코딩하기도 이전에 나온 기능들이지만 ㅠㅠ)들이 나오기 전에는 으례 이 방식을 사용했다고 많이 들어왔습니다.</p>
+<p>이제는 이 방식을 벗어나기 위해 sync를 맞추기 위한 promise, async, setTimeout 세 기능들에 대해 알아보겠습니다.</p>
+<h3 id="1-settimeout">1. setTimeout</h3>
+<pre><code class="language-javascript">// setTimeout
+function testSetTimeout(callback) {
+  console.log(&quot;1. Before callback&quot;);
+  setTimeout(function () {
+    console.log(&quot;2. callback function&quot;);
+    if (typeof callback === &quot;function&quot;) {
+      callback();
+    } else {
+      console.log(&quot;   Callback is not func!&quot;);
+    }
+  }, 3000);
+  console.log(&quot;3. After callback&quot;);
+}
+
+(function runA() {
+  testSetTimeout(function () {
+    console.log(&quot;   Call about setTimeout callback func!!&quot;);
+  });
+})();</code></pre>
+<p>callback함수를 포함해 testSetTimeout 함수를 호출합니다. 함수 내부의
+setTimeout에서 3000ms를 기다리는 동안 계속 다음 명령어가 실행되므로 <code>3. After callback</code>이
+찍힐 수밖에 없습니다.</p>
+<figure style="text-align: center;">
+    <img src="https://jicjjang.github.io/static/image/javascript/promise/settimeout.png" alt="image" style="width:50%; margin:0 auto;">
+</figure>
+
+<p>(<code>1. Before callback</code>, <code>3. After callback</code> 이후에 <code>2. callback function</code>, <code>Call about setTimeout callback func!!</code> 가 찍히는 모습.)</p>
+<h3 id="2-promise">2. Promise</h3>
+<pre><code class="language-javascript">// Promise
+function testPromise(callback) {
+  return new Promise(function(resolve, reject) {
+    if (typeof callback === &quot;function&quot;) {
+      console.log(&quot;1. callback is function.&quot;);
+      setTimeout(() =&gt; {
+        resolve(callback);
+      }, 2000);
+    } else {
+      reject(&quot;2. callback is not a function.&quot;);
+    }
+  });
+}
+
+(function runA() {
+  testPromise(function () {
+    console.log(&quot;2. callback function!&quot;);
+  }).then(function (callback) {
+    callback();
+  }).then(function () {
+    console.log(&quot;3. callback is done.&quot;);
+  }).catch(function (reason) {
+    console.error(reason);
+  });
+})();</code></pre>
+<p>callback함수를 포함해 testPromise를 호출하고, callback이 함수면 2000ms 뒤에 resolve()로 callback 파라미터를 포함해 다음 함수 (then)을 실행합니다. promise로 물려있는 then 함수들이 순서대로 실행됩니다. (reject 발생 시 catch로 들어갑니다.)</p>
+<figure style="text-align: center;">
+    <img src="https://jicjjang.github.io/static/image/javascript/promise/promise.png" alt="image" style="width:50%; margin:0 auto;">
+</figure>
+
+<p>(바로 <code>1. callback is function.</code> 이 실행되고 2초뒤에 <code>2. callback function!</code> 과 <code>3. callback is done</code> 이 실행되는 모습.)</p>
+<h3 id="3-async">3. async</h3>
+<pre><code class="language-javascript">function testPromise(callback) {
+  return new Promise((resolve, reject) =&gt; {
+    if (typeof callback === &quot;function&quot;) {
+      console.log(&quot;1. callback is function.&quot;);
+      setTimeout(() =&gt; {
+        resolve(callback);
+      }, 2000);
+    } else if (typeof callback === &quot;number&quot;) {
+      console.log(&quot;1. callback number is &quot; + callback);
+      setTimeout(() =&gt; {
+        resolve(callback);
+      }, 2000);
+    } else {
+      reject(&quot;1. callback is not a function, number&quot;);
+    }
+  });
+}
+
+async function testAsync(x) {
+  var a = testPromise(20)
+  var b = testPromise(30)
+
+  return x + await a + await b
+}
+
+testAsync(50).then(result =&gt; console.log(result))</code></pre>
+<p>우선 이 함수를 실행시켜볼 때 까지 몰랐던 것이... 크롬에서 ES6를 이미 지원해서 바로 실행된다는 것입니다...
+위 promise 예제에서 썼던 promise 생성 부분을 확장시켜, number 값이 들어오면 그 값을 보여주고 callback으로 넘겨주도록 만들어놓고 async 함수로 사용을 해봅니다.</p>
+<figure style="text-align: center;">
+    <img src="https://jicjjang.github.io/static/image/javascript/promise/async.png" alt="image" style="margin:0 auto;">
+</figure>
+
+<p>위와 같은 결과가 나옵니다. a, b에는 거의 동시에 promise로 들어가기에 <code>1. callback number is ~~</code> 가 두번 찍히게 되고, return 값에 있는 await에 해당하는 a와 b가 모두 할 일(promise의 2000ms)을 기다렸다가 끝나면 return을 하게됩니다.</p>
+<hr>
+<p>매우 간단한 것들이지만 setTimeout과는 다르게 promise와 async는 명확히 앞서 하던 일들이 끝나면 다음 일을 할 수 있도록 명시해줍니다. 이 차이 때문에라도 setTimeout을 사용하는 일은 그만해야 할 것입니다.</p>
+<p><strong>이번 회사 프로젝트를 하면서 Promise가 IE11에서도 먹히지 않는 모습을 보았습니다. 브라우저 호환성을 위해서 IE에서는 promise polyfill이나 async polyfill을 사용해야 합니다. async 또한 모든 브라우저에서 현재 ES6를 지원하는 것이 아니기 때문에 조심해서 사용해야 합니다.</strong></p>
+<p>오늘 포스팅은 여기서 마무리하겠습니다. 감사합니다.</p>
+</section><section class="profile"><div class="profile__card"><div class="profile__img"><figure class="absolute-bg" style="background-image:url(/static/image/mine.jpg)"></figure></div><div class="profile__container"><p>프론트 개발을 좋아하고 꾸준히 공부하는 백엔드 개발자. 새로운 기술에 관심이 많음. React + Vue 개발 진행중. 현재 Kakaopay 재직중.</p><ul class="profile__social"><li><a class="fa fa-lg fa-envelope-o" href="mailto:jicjjang12@gmail.com"></a></li><li><a class="fa fa-lg fa-github" href="https://github.com/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-linkedin" href="https://www.linkedin.com/in/jicjjang" target="_blank"></a></li><li><a class="fa fa-lg fa-instagram" href="https://instagram.com/jicjjang" target="_blank"></a></li></ul></div></div></section></article><section class="next"><a class="next__link" itemProp="url" style="background-image:url(/static/image/javascript/vue/background.jpg)" href="/slides/vue-basic-presentation/"><div class="next__container"><span>Read Next</span><h2>[Presentation] Vue.js basic</h2></div></a></section><div id="disqus_thread" style="margin:50px 10% 0 10%"></div></main></div><script id="__NEXT_DATA__" type="application/json">{"dataManager":"[]","props":{"pageProps":{"postId":"promise-and-async-await"}},"page":"/post","query":{"id":"promise-and-async-await"},"buildId":"1K6jiUe679ZNAQ69RjW6W","nextExport":true}</script><script nomodule="" src="/_next/static/runtime/polyfills-ebd4705da3402b2d78e1.js"></script><script async="" data-next-page="/post" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/post.js"></script><script async="" data-next-page="/_app" src="/_next/static/1K6jiUe679ZNAQ69RjW6W/pages/_app.js"></script><script src="/_next/static/runtime/webpack-9369c5c69dbf6d4912cb.js" async=""></script><script src="/_next/static/chunks/commons.15c31151fcdd343a2908.js" async=""></script><script src="/_next/static/runtime/main-702dd6d8b1f9483d47f1.js" async=""></script><script src="/static/script/google-analytics.js"></script></body></html>
