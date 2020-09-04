@@ -30,7 +30,7 @@
     "@zeit/next-sass": "^1.0.1",
     "html-loader": "^0.5.5",
     "markdown-loader": "^5.1.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "push-dir": "^0.4.1"
   }
 }
